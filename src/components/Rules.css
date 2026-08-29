@@ -1,0 +1,568 @@
+/* =========================================
+   RESET / BASE
+========================================= */
+
+.rules,
+.rules * {
+    box-sizing: border-box;
+}
+
+.rules {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 45px 30px 70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #eef2ff 100%
+        );
+
+    color: #1e293b;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MAIN TITLE
+========================================= */
+
+.rules > h1 {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 0 auto 35px;
+
+    text-align: center;
+
+    color: #0f172a;
+
+    font-size: 34px;
+    line-height: 1.25;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* =========================================
+   COMMON RULE CARD
+========================================= */
+
+.rules > div {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 0 auto 20px;
+
+    padding: 25px 28px;
+
+    position: relative;
+
+    background: #ffffff;
+
+    border: 1px solid transparent;
+    border-radius: 16px;
+
+    box-shadow:
+        0 6px 25px rgba(15, 23, 42, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.rules > div:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.09);
+}
+
+
+/* =========================================
+   CARD LEFT ACCENT
+========================================= */
+
+.rules > div::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    border-radius: 16px 0 0 16px;
+}
+
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+.rules h2 {
+    margin: 0 0 18px;
+
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 750;
+}
+
+.rules p {
+    margin: 0 0 10px;
+
+    color: #475569;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.rules p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   RULE 1
+   GENERAL — BLUE
+========================================= */
+
+.rules1 {
+    border-color: #bfdbfe !important;
+    background: #f8fbff !important;
+}
+
+.rules1::before {
+    background: #3b82f6;
+}
+
+.rules1 h2 {
+    color: #2563eb;
+}
+
+
+/* =========================================
+   RULE 2
+   STUDENT DATA — CYAN
+========================================= */
+
+.rules2 {
+    border-color: #a5f3fc !important;
+    background: #f7feff !important;
+}
+
+.rules2::before {
+    background: #06b6d4;
+}
+
+.rules2 h2 {
+    color: #0891b2;
+}
+
+
+/* =========================================
+   RULE 3
+   ATTENDANCE — GREEN
+========================================= */
+
+.rules3 {
+    border-color: #bbf7d0 !important;
+    background: #f7fff9 !important;
+}
+
+.rules3::before {
+    background: #22c55e;
+}
+
+.rules3 h2 {
+    color: #16a34a;
+}
+
+
+/* =========================================
+   RULE 4
+   USER RESPONSIBILITY — INDIGO
+========================================= */
+
+.rules4 {
+    border-color: #c7d2fe !important;
+    background: #fafaff !important;
+}
+
+.rules4::before {
+    background: #6366f1;
+}
+
+.rules4 h2 {
+    color: #4f46e5;
+}
+
+
+/* =========================================
+   RULE 5
+   PROHIBITED ACTIONS — RED
+========================================= */
+
+.rules5 {
+    border-color: #fecaca !important;
+    background: #fff8f8 !important;
+
+    box-shadow:
+        0 7px 28px rgba(220, 38, 38, 0.08);
+}
+
+.rules5::before {
+    background: #dc2626;
+}
+
+.rules5 h2 {
+    color: #dc2626;
+}
+
+.rules5 p {
+    color: #4b5563;
+}
+
+
+/* =========================================
+   RULE 6
+   PRIVACY — EMERALD
+========================================= */
+
+.rules6 {
+    border-color: #a7f3d0 !important;
+    background: #f6fffb !important;
+}
+
+.rules6::before {
+    background: #10b981;
+}
+
+.rules6 h2 {
+    color: #059669;
+}
+
+
+/* =========================================
+   RULE 7
+   SECURITY — ORANGE
+========================================= */
+
+.rules7 {
+    border-color: #fed7aa !important;
+    background: #fffaf5 !important;
+}
+
+.rules7::before {
+    background: #f97316;
+}
+
+.rules7 h2 {
+    color: #ea580c;
+}
+
+
+/* =========================================
+   RULE 8
+   SYSTEM USAGE — PURPLE
+========================================= */
+
+.rules8 {
+    border-color: #ddd6fe !important;
+    background: #fbfaff !important;
+}
+
+.rules8::before {
+    background: #8b5cf6;
+}
+
+.rules8 h2 {
+    color: #7c3aed;
+}
+
+
+/* =========================================
+   RULE 9
+   VIOLATIONS — DARK RED
+========================================= */
+
+.rules9 {
+    border-color: #fca5a5 !important;
+    background: #fff5f5 !important;
+
+    box-shadow:
+        0 8px 30px rgba(185, 28, 28, 0.10);
+}
+
+.rules9::before {
+    background: #b91c1c;
+}
+
+.rules9 h2 {
+    color: #b91c1c;
+}
+
+.rules9 p {
+    color: #450a0a;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   PARAGRAPH BULLET EFFECT
+========================================= */
+
+.rules > div:not(.rules9) p {
+    position: relative;
+
+    padding-left: 18px;
+}
+
+.rules > div:not(.rules9) p::before {
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+    top: 10px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    opacity: 0.45;
+}
+
+
+/* =========================================
+   DESKTOP LARGE
+========================================= */
+
+@media (min-width: 1400px) {
+    .rules {
+        padding-top: 60px;
+    }
+
+    .rules > h1 {
+        font-size: 38px;
+    }
+
+    .rules > div {
+        max-width: 1050px;
+        padding: 30px 35px;
+    }
+
+    .rules h2 {
+        font-size: 21px;
+    }
+
+    .rules p {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+    .rules {
+        padding: 35px 20px 50px;
+    }
+
+    .rules > h1 {
+        font-size: 30px;
+        margin-bottom: 28px;
+    }
+
+    .rules > div {
+        padding: 22px 24px;
+    }
+
+    .rules h2 {
+        font-size: 19px;
+    }
+
+    .rules p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .rules {
+        padding: 25px 12px 40px;
+    }
+
+    .rules > h1 {
+        font-size: 26px;
+        margin-bottom: 22px;
+    }
+
+    .rules > div {
+        margin-bottom: 14px;
+
+        padding: 20px 18px;
+
+        border-radius: 13px;
+    }
+
+    .rules > div::before {
+        width: 4px;
+
+        border-radius: 13px 0 0 13px;
+    }
+
+    .rules h2 {
+        margin-bottom: 14px;
+
+        font-size: 18px;
+    }
+
+    .rules p {
+        margin-bottom: 9px;
+
+        font-size: 13px;
+        line-height: 1.65;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+    .rules {
+        padding: 20px 8px 30px;
+    }
+
+    .rules > h1 {
+        font-size: 23px;
+        line-height: 1.3;
+
+        margin-bottom: 18px;
+    }
+
+    .rules > div {
+        margin-bottom: 11px;
+
+        padding: 17px 14px;
+
+        border-radius: 11px;
+    }
+
+    .rules > div::before {
+        width: 3px;
+    }
+
+    .rules h2 {
+        margin-bottom: 11px;
+
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .rules p {
+        padding-left: 14px !important;
+
+        margin-bottom: 8px;
+
+        font-size: 12px;
+        line-height: 1.6;
+
+        overflow-wrap: anywhere;
+    }
+
+    .rules > div:not(.rules9) p::before {
+        left: 0;
+        top: 8px;
+
+        width: 4px;
+        height: 4px;
+    }
+}
+
+
+/* =========================================
+   320px — EXTRA SMALL
+========================================= */
+
+@media (max-width: 320px) {
+    .rules {
+        width: 100%;
+        min-width: 0;
+
+        padding: 15px 5px 25px;
+    }
+
+    .rules > h1 {
+        width: 100%;
+
+        font-size: 20px;
+
+        margin-bottom: 15px;
+
+        overflow-wrap: anywhere;
+    }
+
+    .rules > div {
+        width: 100%;
+
+        margin-bottom: 9px;
+
+        padding: 14px 11px;
+
+        border-radius: 9px;
+    }
+
+    .rules > div::before {
+        width: 3px;
+
+        border-radius: 9px 0 0 9px;
+    }
+
+    .rules h2 {
+        margin-bottom: 9px;
+
+        font-size: 14px;
+        line-height: 1.35;
+
+        overflow-wrap: anywhere;
+    }
+
+    .rules p {
+        margin-bottom: 7px;
+
+        padding-left: 12px !important;
+
+        font-size: 10px;
+        line-height: 1.6;
+
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    .rules > div:not(.rules9) p::before {
+        top: 7px;
+
+        width: 3px;
+        height: 3px;
+    }
+}

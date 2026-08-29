@@ -1,0 +1,945 @@
+/* =========================================
+   PROFILE — BASE
+========================================= */
+
+.profile,
+.profile * {
+    box-sizing: border-box;
+}
+
+.profile {
+    width: 100%-240px;
+    min-height: 100vh;
+
+    padding: 35px 30px 60px;
+    margin-left: 240px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #f1f5f9 55%,
+            #eef2ff 100%
+        );
+
+    color: #1e293b;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.profile > button:first-child {
+    width: 46px;
+    height: 46px;
+
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #475569;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.07);
+
+    transition: all 0.2s ease;
+}
+
+.profile > button:first-child:hover {
+    background: #4f46e5;
+    color: #ffffff;
+
+    border-color: #4f46e5;
+
+    transform: translateX(-3px);
+
+    box-shadow:
+        0 8px 22px rgba(79, 70, 229, 0.25);
+}
+
+.profile > button:first-child:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================
+   PROFILE INFO CARD
+========================================= */
+
+.profile-section1 {
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: 230px;
+
+    margin: 0 auto 30px;
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.06);
+
+    transition: box-shadow 0.2s ease;
+}
+
+.profile-section1:hover {
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.09);
+}
+
+
+/* =========================================
+   PROFILE IMAGE
+========================================= */
+
+.profile-image {
+    width: 155px;
+    height: 155px;
+
+    flex: 0 0 155px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef2ff;
+
+    border: 5px solid #e0e7ff;
+
+    box-shadow:
+        0 8px 25px rgba(79, 70, 229, 0.15);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   NORMAL PROFILE INFO
+========================================= */
+
+.profile-about {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-about h2 {
+    margin: 0 0 15px;
+
+    color: #111827;
+
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 750;
+
+    overflow-wrap: anywhere;
+}
+
+.profile-about p {
+    margin: 7px 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.55;
+
+    overflow-wrap: anywhere;
+}
+
+.profile-about p:first-of-type {
+    color: #334155;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   EDIT BUTTON
+========================================= */
+
+.profile-about > button {
+    min-height: 43px;
+
+    margin-top: 14px;
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #4f46e5
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 16px rgba(79, 70, 229, 0.22);
+
+    transition: all 0.2s ease;
+}
+
+.profile-about > button:hover {
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #4338ca
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(79, 70, 229, 0.3);
+}
+
+.profile-about > button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   EDIT MODE
+========================================= */
+
+.profile-edit-div {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+.profile-edit-div input {
+    width: 100%;
+    max-width: 500px;
+
+    height: 44px;
+
+    margin-bottom: 11px;
+    padding: 0 14px;
+
+    border: 1px solid #dbe1ea;
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #f8fafc;
+    color: #1e293b;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-edit-div input::placeholder {
+    color: #94a3b8;
+}
+
+.profile-edit-div input:focus {
+    background: #ffffff;
+
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.10);
+}
+
+.profile-edit-div p {
+    margin: 5px 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.profile-save {
+    min-height: 42px;
+
+    margin-top: 12px;
+    padding: 0 25px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #16a34a;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(22, 163, 74, 0.20);
+
+    transition: all 0.2s ease;
+}
+
+.profile-save:hover {
+    background: #15803d;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(22, 163, 74, 0.28);
+}
+
+.profile-save:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   RULES
+========================================= */
+
+.profile > .rules {
+    width: 100%;
+}
+
+
+/* =========================================
+   BOTTOM ACTIONS
+========================================= */
+
+.profile-section3 {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 30px auto 0;
+    padding: 25px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   BOTTOM BUTTONS
+========================================= */
+
+.profile-section3 button {
+    min-height: 43px;
+
+    padding: 0 21px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+/* LOGOUT */
+
+.profile-section3 button:first-child {
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+    color: #475569;
+}
+
+.profile-section3 button:first-child:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+
+    transform: translateY(-1px);
+}
+
+
+/* DELETE */
+
+.profile-section3 button:last-child {
+    border: 1px solid #fecaca;
+
+    background: #fff1f2;
+    color: #dc2626;
+}
+
+.profile-section3 button:last-child:hover {
+    background: #dc2626;
+    color: #ffffff;
+
+    border-color: #dc2626;
+
+    box-shadow:
+        0 7px 20px rgba(220, 38, 38, 0.20);
+
+    transform: translateY(-1px);
+}
+
+.profile-section3 button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1400px) {
+
+    .profile {
+        padding: 45px 40px 70px;
+    }
+
+    .profile-section1,
+    .profile-section3 {
+        max-width: 1150px;
+    }
+
+    .profile-section1 {
+        padding: 38px;
+    }
+
+    .profile-image {
+        width: 165px;
+        height: 165px;
+
+        flex-basis: 165px;
+    }
+
+    .profile-about h2 {
+        font-size: 30px;
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .profile {
+        padding: 30px 20px 50px;
+    }
+
+    .profile-section1 {
+        padding: 27px;
+
+        gap: 27px;
+    }
+
+    .profile-image {
+        width: 130px;
+        height: 130px;
+
+        flex-basis: 130px;
+    }
+
+    .profile-about h2 {
+        font-size: 24px;
+    }
+}
+
+
+/* =========================================
+   700px
+========================================= */
+
+@media (max-width: 700px) {
+
+    .profile {
+        padding: 25px 15px 45px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .profile-section1 {
+        flex-direction: column;
+
+        min-height: auto;
+
+        padding: 28px 22px;
+
+        gap: 20px;
+
+        text-align: center;
+
+        border-radius: 16px;
+    }
+
+    .profile-image {
+        width: 125px;
+        height: 125px;
+
+        flex-basis: 125px;
+    }
+
+    .profile-about {
+        width: 100%;
+    }
+
+    .profile-about h2 {
+        font-size: 23px;
+    }
+
+    .profile-about p {
+        font-size: 13px;
+    }
+
+    .profile-about > button {
+        width: 100%;
+    }
+
+
+    /* EDIT */
+
+    .profile-edit-div {
+        width: 100%;
+
+        align-items: stretch;
+
+        text-align: left;
+    }
+
+    .profile-edit-div input {
+        max-width: none;
+
+        height: 43px;
+    }
+
+    .profile-edit-div p {
+        font-size: 13px;
+    }
+
+    .profile-save {
+        width: 100%;
+    }
+
+
+    /* BOTTOM */
+
+    .profile-section3 {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 20px;
+
+        border-radius: 15px;
+    }
+
+    .profile-section3 button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   500px
+========================================= */
+
+@media (max-width: 500px) {
+
+    .profile {
+        padding: 18px 10px 35px;
+    }
+
+    .profile > button:first-child {
+        width: 40px;
+        height: 40px;
+
+        margin-bottom: 16px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+    }
+
+    .profile-section1 {
+        margin-bottom: 20px;
+
+        padding: 22px 15px;
+
+        gap: 16px;
+
+        border-radius: 14px;
+    }
+
+    .profile-image {
+        width: 105px;
+        height: 105px;
+
+        flex-basis: 105px;
+
+        border-width: 4px;
+    }
+
+    .profile-about h2 {
+        margin-bottom: 12px;
+
+        font-size: 20px;
+    }
+
+    .profile-about p {
+        margin: 6px 0;
+
+        font-size: 12px;
+    }
+
+    .profile-about > button {
+        min-height: 40px;
+
+        margin-top: 10px;
+
+        font-size: 13px;
+    }
+
+
+    /* EDIT */
+
+    .profile-edit-div input {
+        height: 40px;
+
+        padding: 0 11px;
+
+        font-size: 12px;
+    }
+
+    .profile-edit-div p {
+        font-size: 11px;
+    }
+
+    .profile-save {
+        min-height: 40px;
+
+        margin-top: 10px;
+
+        font-size: 12px;
+    }
+
+
+    /* BOTTOM */
+
+    .profile-section3 {
+        margin-top: 20px;
+
+        padding: 15px;
+
+        gap: 8px;
+
+        border-radius: 13px;
+    }
+
+    .profile-section3 button {
+        min-height: 40px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================
+   400px
+========================================= */
+
+@media (max-width: 400px) {
+
+    .profile {
+        padding: 14px 7px 30px;
+    }
+
+    .profile-section1 {
+        padding: 19px 12px;
+
+        gap: 14px;
+    }
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
+
+        flex-basis: 90px;
+
+        border-width: 3px;
+    }
+
+    .profile-about h2 {
+        font-size: 18px;
+    }
+
+    .profile-about p {
+        font-size: 11px;
+    }
+
+    .profile-about > button {
+        min-height: 38px;
+
+        font-size: 11px;
+    }
+
+
+    /* EDIT */
+
+    .profile-edit-div input {
+        height: 38px;
+
+        margin-bottom: 8px;
+
+        padding: 0 9px;
+
+        border-radius: 7px;
+
+        font-size: 11px;
+    }
+
+    .profile-edit-div p {
+        font-size: 10px;
+    }
+
+    .profile-save {
+        min-height: 37px;
+
+        font-size: 11px;
+    }
+
+
+    /* BOTTOM */
+
+    .profile-section3 {
+        padding: 12px;
+    }
+
+    .profile-section3 button {
+        min-height: 38px;
+
+        padding: 0 10px;
+
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================
+   320px — EXTRA SMALL
+========================================= */
+
+@media (max-width: 320px) {
+
+    .profile {
+        width: 100%;
+        min-width: 0;
+
+        padding: 10px 5px 25px;
+    }
+
+    .profile > button:first-child {
+        width: 37px;
+        height: 37px;
+
+        margin-bottom: 12px;
+
+        border-radius: 8px;
+
+        font-size: 16px;
+    }
+
+
+    /* PROFILE CARD */
+
+    .profile-section1 {
+        width: 100%;
+
+        min-width: 0;
+
+        padding: 15px 9px;
+
+        gap: 11px;
+
+        border-radius: 10px;
+    }
+
+    .profile-image {
+        width: 75px;
+        height: 75px;
+
+        flex-basis: 75px;
+
+        border-width: 3px;
+    }
+
+
+    /* ABOUT */
+
+    .profile-about {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .profile-about h2 {
+        margin-bottom: 8px;
+
+        font-size: 16px;
+        line-height: 1.3;
+
+        overflow-wrap: anywhere;
+    }
+
+    .profile-about p {
+        margin: 4px 0;
+
+        font-size: 10px;
+        line-height: 1.5;
+
+        overflow-wrap: anywhere;
+    }
+
+    .profile-about > button {
+        width: 100%;
+
+        min-height: 35px;
+
+        margin-top: 8px;
+
+        padding: 0 6px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+    }
+
+
+    /* EDIT */
+
+    .profile-edit-div {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .profile-edit-div input {
+        width: 100%;
+
+        height: 35px;
+
+        margin-bottom: 7px;
+
+        padding: 0 8px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+    }
+
+    .profile-edit-div p {
+        margin: 4px 0;
+
+        font-size: 9px;
+        line-height: 1.5;
+
+        overflow-wrap: anywhere;
+    }
+
+    .profile-save {
+        width: 100%;
+
+        min-height: 34px;
+
+        margin-top: 8px;
+
+        padding: 0 5px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+    }
+
+
+    /* BOTTOM */
+
+    .profile-section3 {
+        width: 100%;
+
+        margin-top: 15px;
+
+        padding: 9px;
+
+        gap: 6px;
+
+        border-radius: 9px;
+    }
+
+    .profile-section3 button {
+        width: 100%;
+
+        min-height: 34px;
+
+        padding: 0 4px;
+
+        border-radius: 7px;
+
+        font-size: 9px;
+
+        white-space: nowrap;
+    }
+}

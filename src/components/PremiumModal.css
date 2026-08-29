@@ -1,0 +1,129 @@
+/* Modal oynasining umumiy ko'rinishi (Oq/Neytral fon) */
+.premium-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 90%;
+    max-width: 420px;
+    padding: 32px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: inherit;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(111, 66, 229, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+}
+
+/* Modal ochilgandagi holati */
+.premium-modal[open] {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Orqa fonni qoraytirmasdan, yumshoq xiralashtirish */
+.premium-modal::backdrop {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+/* Sarlavha */
+.premium-modal h1 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.3px;
+}
+
+/* Matnlar (Siz aytgan rgba(255, 255, 255, 0.5) g‘oyasi asosida ochroq ranglar) */
+.premium-modal p {
+    margin: 0 0 8px 0;
+    color: #333333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.premium-modal p:last-of-type {
+    margin-bottom: 24px;
+    color: rgba(0, 0, 0, 0.5); /* Asosiy rangga moslashtirilgan shaffof rang */
+    font-size: 13px;
+}
+
+/* Siz xohlagandek yanada chiroyli va yorqinroq tugma dizayni */
+.premium-modal button {
+    position: relative;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 46px;
+    padding: 0 21px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        #a855f7 0%,
+        #7c3aed 50%,
+        #6366f1 100%
+    );
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    box-shadow: 
+        0 10px 20px rgba(124, 58, 237, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: 
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+    overflow: hidden;
+}
+
+/* Tugma uchun Shine (Yaltiroq) effekti */
+.premium-modal button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.premium-modal button:hover::before {
+    left: 140%;
+}
+
+.premium-modal button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 
+        0 14px 28px rgba(124, 58, 237, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.premium-modal button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 6px 14px rgba(124, 58, 237, 0.25);
+}

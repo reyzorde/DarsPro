@@ -1,0 +1,520 @@
+/* ================================
+   GLOBAL
+================================ */
+
+.oos,
+.oos * {
+    box-sizing: border-box;
+}
+
+.oos {
+    width: 100%-250px;
+    margin-left: 240px;
+    min-height: 100vh;
+    padding: 100px 30px 40px;
+    background: #f5f7fb;
+    color: #1f2937;
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   TOP HEADER / TITLE
+================================ */
+
+.oos > h2 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 25px;
+
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 700;
+
+    color: #111827;
+}
+
+
+/* ================================
+   FIXED HEADER
+================================ */
+
+.oos-header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    width: 100%-250px;
+    margin-left: 240px;
+    min-height: 68px;
+
+    padding: 12px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.07);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* ================================
+   HEADER BUTTONS
+================================ */
+
+.oos-header button {
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Qaytish */
+
+.oos-header button:first-child {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+}
+
+.oos-header button:first-child:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.oos-header button:first-child:active {
+    transform: scale(0.97);
+}
+
+
+/* Premium button */
+
+.oos-header .premium {
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #4f46e5
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 15px rgba(79, 70, 229, 0.25);
+}
+
+.oos-header .premium:hover {
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #4338ca
+    );
+
+    box-shadow:
+        0 7px 20px rgba(79, 70, 229, 0.35);
+
+    transform: translateY(-1px);
+}
+
+.oos-header .premium:active {
+    transform: scale(0.97);
+}
+
+
+/* ================================
+   TABLE CONTAINER
+================================ */
+
+.oos table {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* ================================
+   TABLE HEADER
+================================ */
+
+.oos thead {
+    background: #f8fafc;
+}
+
+.oos th {
+    height: 54px;
+
+    padding: 0 20px;
+
+    text-align: left;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* ================================
+   TABLE BODY
+================================ */
+
+.oos td {
+    height: 56px;
+
+    padding: 0 20px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.oos tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+.oos tbody tr:hover {
+    background: #f8fafc;
+}
+
+.oos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ================================
+   STATUS CELL
+================================ */
+
+.oos td:nth-child(2) {
+    font-weight: 600;
+}
+
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.oos-not {
+    width: calc(100% - 40px);
+    max-width: 600px;
+
+    min-height: 180px;
+
+    margin: 100px auto 0;
+    padding: 35px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.08);
+}
+
+.oos-not h2 {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+
+/* ================================
+   1200px
+================================ */
+
+@media (max-width: 1200px) {
+    .oos {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .oos-header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+/* ================================
+   768px TABLET
+================================ */
+
+@media (max-width: 768px) {
+    .oos {
+        padding: 90px 15px 30px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .oos > h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .oos-header {
+        min-height: 64px;
+
+        padding: 10px 15px;
+        width: 100%;
+        margin-left: 0;
+
+        gap: 10px;
+    }
+
+    .oos-header button {
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 13px;
+    }
+
+    .oos table {
+        border-radius: 10px;
+    }
+
+    .oos th,
+    .oos td {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+
+/* ================================
+   576px MOBILE
+================================ */
+
+@media (max-width: 576px) {
+    .oos {
+        padding: 82px 10px 25px;
+    }
+
+    .oos > h2 {
+        font-size: 21px;
+        line-height: 1.35;
+        margin-bottom: 18px;
+    }
+
+    .oos-header {
+        min-height: 58px;
+
+        padding: 8px 10px;
+
+        gap: 8px;
+    }
+
+    .oos-header button {
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 0 8px;
+
+        font-size: 12px;
+
+        white-space: nowrap;
+    }
+
+    .oos th {
+        height: 48px;
+
+        padding: 0 10px;
+
+        font-size: 11px;
+    }
+
+    .oos td {
+        height: 50px;
+
+        padding: 0 10px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* ================================
+   400px
+================================ */
+
+@media (max-width: 400px) {
+    .oos {
+        padding: 78px 8px 20px;
+    }
+
+    .oos > h2 {
+        font-size: 19px;
+    }
+
+    .oos-header {
+        padding: 7px 8px;
+    }
+
+    .oos-header button {
+        min-height: 38px;
+
+        padding: 0 5px;
+
+        font-size: 11px;
+    }
+
+    .oos th {
+        padding: 0 7px;
+        font-size: 10px;
+    }
+
+    .oos td {
+        padding: 0 7px;
+        font-size: 12px;
+    }
+}
+
+
+/* ================================
+   320px — VERY SMALL DEVICES
+================================ */
+
+@media (max-width: 320px) {
+    .oos {
+        width: 100%;
+        min-width: 0;
+
+        padding: 75px 5px 15px;
+    }
+
+    .oos > h2 {
+        width: 100%;
+
+        margin-bottom: 15px;
+
+        font-size: 17px;
+        line-height: 1.35;
+
+        overflow-wrap: anywhere;
+    }
+
+    .oos-header {
+        width: 100%;
+
+        min-height: 54px;
+
+        padding: 6px;
+
+        gap: 5px;
+    }
+
+    .oos-header button {
+        min-width: 0;
+        width: 50%;
+
+        min-height: 36px;
+
+        padding: 0 3px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .oos table {
+        width: 100%;
+
+        border-radius: 8px;
+
+        table-layout: fixed;
+    }
+
+    .oos th,
+    .oos td {
+        padding-left: 5px;
+        padding-right: 5px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .oos th {
+        height: 42px;
+        font-size: 9px;
+    }
+
+    .oos td {
+        height: 45px;
+        font-size: 11px;
+    }
+
+    .oos-not {
+        width: calc(100% - 20px);
+
+        margin-top: 80px;
+
+        padding: 25px 15px;
+    }
+
+    .oos-not h2 {
+        font-size: 17px;
+    }
+}

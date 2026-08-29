@@ -1,0 +1,137 @@
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.hemo-wrapper {
+    position: relative;
+
+    width: calc(100% - 250px);
+    min-height: 100vh;
+
+    margin-left: 250px;
+    padding: 30px 34px 45px;
+
+    background:
+        radial-gradient(
+            circle at 85% 0%,
+            rgba(99, 91, 255, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 100%,
+            rgba(99, 91, 255, 0.05),
+            transparent 32%
+        ),
+        #f6f7fb;
+
+    overflow-x: hidden;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Birinchi kirishdagi fullscreen splash */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+
+
+  animation: splashFade 0.5s ease forwards;
+}
+
+/* Markazdagi loader */
+.loader {
+  width: 60px;
+  height: 60px;
+
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #8b5cf6;
+  border-right-color: #06b6d4;
+
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+/* Loading text */
+.loading-text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Kontent */
+.main-content {
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* Animatsiyalar */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Telefon uchun */
+@media (max-width: 600px) {
+  .loader {
+    width: 50px;
+    height: 50px;
+    border-width: 4px;
+  }
+
+  .loading-text {
+    font-size: 15px;
+  }
+}

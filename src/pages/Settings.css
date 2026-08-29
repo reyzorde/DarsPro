@@ -1,0 +1,198 @@
+.settings {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    margin-left: 250px;
+    padding: 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f8fafc;
+}
+
+/* Asosiy card */
+.settings-card {
+    width: 100%;
+    max-width: 700px;
+    padding: 50px 40px;
+
+    box-sizing: border-box;
+    text-align: center;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Icon */
+.settings-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #fef3c7;
+
+    font-size: 32px;
+}
+
+/* Title */
+.settings-card h1 {
+    margin: 0 0 20px;
+
+    color: #111827;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* Uzr yozuvi */
+.settings-apology {
+    margin-bottom: 10px;
+
+    color: #374151;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+/* Description */
+.settings-card p:not(.settings-apology) {
+    margin: 0 auto;
+
+    max-width: 500px;
+
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Divider */
+.settings-line {
+    width: 60px;
+    height: 4px;
+    margin: 30px auto 20px;
+
+    border-radius: 10px;
+    background: #f59e0b;
+}
+
+/* Status */
+.settings-status {
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+    background: #fff7ed;
+
+    color: #ea580c;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+    .settings {
+        width: calc(100% - 200px);
+        margin-left: 200px;
+        padding: 30px;
+    }
+
+    .settings-card {
+        padding: 40px 30px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+    .settings {
+        width: 100%;
+        margin-left: 0;
+        min-height: 100vh;
+
+        padding: 20px 15px;
+    }
+
+    .settings-card {
+        padding: 35px 20px;
+        border-radius: 18px;
+    }
+
+    .settings-icon {
+        width: 60px;
+        height: 60px;
+
+        margin-bottom: 20px;
+        font-size: 27px;
+    }
+
+    .settings-card h1 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .settings-apology {
+        font-size: 17px;
+    }
+
+    .settings-card p:not(.settings-apology) {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================
+   VERY SMALL DEVICES
+   320px gacha buzilmaydi
+========================= */
+
+@media (max-width: 360px) {
+    .settings {
+        padding: 15px 10px;
+    }
+
+    .settings-card {
+        padding: 30px 15px;
+        border-radius: 15px;
+    }
+
+    .settings-icon {
+        width: 52px;
+        height: 52px;
+
+        font-size: 24px;
+    }
+
+    .settings-card h1 {
+        font-size: 23px;
+    }
+
+    .settings-apology {
+        font-size: 15px;
+    }
+
+    .settings-card p:not(.settings-apology) {
+        font-size: 13px;
+    }
+
+    .settings-status {
+        padding: 7px 14px;
+        font-size: 12px;
+    }
+}

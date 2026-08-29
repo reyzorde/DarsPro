@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+.router {
+  min-height: 100vh;
+}
+
+/* Desktop */
+.router-content {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+
+/* ========================= */
+/* Mobile                    */
+/* ========================= */
+
+@media (max-width: 740px) {
+  .router-content {
+    margin-left: 0;
+    padding: 20px;
+
+    /* Pastdagi sidebar uchun joy */
+    padding-bottom: 90px;
+  }
+}

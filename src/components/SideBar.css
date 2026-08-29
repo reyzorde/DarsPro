@@ -1,0 +1,129 @@
+.sidebar {
+  width: 240px;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  padding: 25px 15px;
+
+  background: #1e293b;
+  color: white;
+
+  z-index: 9999;
+}
+
+.sidebar-logo {
+  padding: 0 15px 30px;
+  border-bottom: 1px solid #334155;
+}
+
+.sidebar-logo h1 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.sidebar-logo h2 {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: normal;
+  color: #94a3b8;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.sidebar-nav a {
+  padding: 12px 15px;
+
+  color: #cbd5e1;
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  transition: 0.2s;
+}
+
+.sidebar-nav a:hover {
+  background: #334155;
+  color: white;
+}
+
+.sidebar-nav a.active {
+  background: #4f46e5;
+  color: white;
+}
+
+
+/* ========================= */
+/* 740px dan kichik          */
+/* ========================= */
+
+@media (max-width: 740px) {
+  .sidebar {
+    width: 100%;
+    height: 70px;
+
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+
+    background: #1e293b;
+
+    z-index: 9999;
+  }
+
+  .sidebar-logo {
+    display: none;
+  }
+
+  .sidebar-nav {
+    width: 100%;
+    height: 70px;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-around;
+
+    gap: 0;
+  }
+
+  .sidebar-nav a {
+    width: 60px;
+    height: 60px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-nav a span {
+    display: none;
+  }
+
+  .sidebar-nav a svg {
+    font-size: 22px;
+  }
+}

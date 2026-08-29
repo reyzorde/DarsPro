@@ -1,0 +1,1364 @@
+
+.hemo-wrapper {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    padding: 30px 34px 45px;
+
+    background:
+        radial-gradient(
+            circle at 90% 0%,
+            rgba(99, 91, 255, 0.045),
+            transparent 28%
+        ),
+        #f7f8fc;
+
+    color: #181927;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER — home-div1
+========================================================= */
+
+.home-div1 {
+    position: relative;
+
+    width: 100%;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+    padding: 0 8px 0 18px;
+
+    border: 1px solid #e6e6ee;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fbfbfd 100%
+        );
+
+    box-shadow:
+        0 3px 7px rgba(25, 25, 55, 0.025),
+        0 10px 26px rgba(25, 25, 55, 0.045),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.home-div1:hover {
+    border-color: #dedcf2;
+
+    box-shadow:
+        0 4px 9px rgba(25, 25, 55, 0.025),
+        0 13px 30px rgba(25, 25, 55, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+
+/* Header bottom line */
+
+.home-div1::after {
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+    bottom: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(99, 91, 255, 0.3),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   DARS + LOGO
+========================================================= */
+
+.home-div1 h2 {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    display: inline-flex;
+    align-items: center;
+
+    color: #181927;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -1px;
+
+    user-select: none;
+}
+
+.home-div1 h2 svg {
+    width: 23px;
+    height: 23px;
+
+    margin-left: 7px;
+    padding: 5px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8179ff 0%,
+            #635bff 48%,
+            #5148df 100%
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 7px;
+
+    box-shadow:
+        0 5px 12px rgba(99, 91, 255, 0.23),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32);
+
+    flex-shrink: 0;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.home-div1 h2:hover svg {
+    transform: rotate(90deg);
+
+    box-shadow:
+        0 7px 16px rgba(99, 91, 255, 0.31),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.home-profile {
+    position: relative;
+    z-index: 2;
+
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 4px 7px 4px 6px;
+
+    border: 1px solid #e5e5ed;
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(25, 25, 55, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.home-profile:hover {
+    transform: translateY(-1px);
+
+    border-color: #d8d5ff;
+
+    box-shadow:
+        0 7px 18px rgba(40, 40, 75, 0.075),
+        0 0 0 3px rgba(99, 91, 255, 0.035);
+}
+
+.home-profile > svg {
+    width: 14px;
+    height: 14px;
+
+    margin-left: 5px;
+    margin-right: 7px;
+
+    color: #635bff;
+
+    flex-shrink: 0;
+}
+
+.home-profile button {
+    height: 32px;
+
+    padding: 0 9px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #363743;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.home-profile button:hover {
+    color: #635bff;
+}
+
+
+/* =========================================================
+   PREMIUM SECTION — home-div2
+========================================================= */
+
+.home-div2 {
+    position: relative;
+
+    width: 100%;
+    min-height: 190px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: 21px;
+    padding: 28px 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            115deg,
+            #5148df 0%,
+            #635bff 52%,
+            #716aff 100%
+        );
+
+    color: #ffffff;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 16px 36px rgba(83, 75, 224, 0.17),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+
+/* Decorative background */
+
+.home-div2::before {
+    content: "";
+
+    position: absolute;
+
+    width: 270px;
+    height: 270px;
+
+    right: -105px;
+    top: -160px;
+
+    border: 50px solid rgba(255, 255, 255, 0.055);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.home-div2::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: 170px;
+    bottom: -125px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    pointer-events: none;
+}
+
+
+/* Premium title */
+
+.home-div2 h2 {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 10px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 750;
+
+    line-height: 1.25;
+
+    letter-spacing: -0.45px;
+}
+
+
+/* Rocket */
+
+.home-div2 > svg {
+    position: absolute;
+    z-index: 2;
+
+    top: 31px;
+    right: 36px;
+
+    width: 27px;
+    height: 27px;
+
+    color: #ffd86a;
+
+    filter:
+        drop-shadow(
+            0 5px 10px rgba(255, 216, 106, 0.28)
+        );
+
+    transform: rotate(-10deg);
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.home-div2:hover > svg {
+    transform:
+        rotate(-10deg)
+        translateY(-2px);
+
+    filter:
+        drop-shadow(
+            0 8px 15px rgba(255, 216, 106, 0.4)
+        );
+}
+
+
+/* Premium text */
+
+.home-div2 p {
+    position: relative;
+    z-index: 2;
+
+    width: min(650px, 78%);
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.77);
+
+    font-size: 11px;
+    font-weight: 400;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   PREMIUM BUTTON
+========================================================= */
+
+.premium {
+    position: relative;
+    z-index: 5;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+
+    margin-top: 17px;
+    padding: 0 21px;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6 0%,
+            #6d5dfc 45%,
+            #4f46e5 100%
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 0.1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(79, 70, 229, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+
+    overflow: hidden;
+}
+
+
+/* Shine */
+
+.premium::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.22),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.5s ease;
+
+    pointer-events: none;
+}
+
+.premium:hover::before {
+    left: 140%;
+}
+
+.premium:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 12px 25px rgba(79, 70, 229, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.premium:active {
+    transform: translateY(1px) scale(0.98);
+
+    box-shadow:
+        0 5px 12px rgba(79, 70, 229, 0.22);
+}
+
+
+/* =========================================================
+   INFORMATION SECTION — home-div3
+========================================================= */
+
+.home-div3 {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.home-div3 > div {
+    position: relative;
+
+    min-width: 0;
+    min-height: 290px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px;
+
+    border: 1px solid #e6e6ee;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #fcfcfe 100%
+        );
+
+    box-shadow:
+        0 3px 7px rgba(25, 25, 55, 0.025),
+        0 10px 25px rgba(25, 25, 55, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Card decorative glow */
+
+.home-div3 > div::before {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: -55px;
+    top: -55px;
+
+    border-radius: 50%;
+
+    background: #f0efff;
+
+    opacity: 0.75;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+
+    pointer-events: none;
+}
+
+.home-div3 > div:hover {
+    transform: translateY(-5px);
+
+    border-color: #dddafa;
+
+    box-shadow:
+        0 5px 10px rgba(25, 25, 55, 0.025),
+        0 18px 38px rgba(35, 35, 75, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.home-div3 > div:hover::before {
+    transform: scale(1.4);
+
+    opacity: 0.95;
+}
+
+
+/* =========================================================
+   CARD TITLES
+========================================================= */
+
+.home-div3 h2 {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+
+    margin: 0 0 13px;
+
+    color: #191a29;
+
+    font-size: 17px;
+    font-weight: 750;
+
+    line-height: 1.4;
+
+    letter-spacing: -0.35px;
+}
+
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
+
+.home-div3 p {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    color: #777987;
+
+    font-size: 11px;
+    font-weight: 400;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CARD BUTTONS
+========================================================= */
+
+.home-div3 button {
+    position: relative;
+    z-index: 5;
+
+    width: fit-content;
+    min-width: 78px;
+    min-height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: auto;
+    padding: 0 15px;
+
+    border: 1px solid rgba(99, 91, 255, 0.16);
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6 0%,
+            #6d5dfc 45%,
+            #4f46e5 100%
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 15px rgba(79, 70, 229, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+/* Button shine */
+
+.home-div3 button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.23),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.5s ease;
+
+    pointer-events: none;
+}
+
+.home-div3 button:hover::before {
+    left: 140%;
+}
+
+.home-div3 button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 11px 22px rgba(79, 70, 229, 0.27),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.home-div3 button:active {
+    transform: translateY(1px) scale(0.97);
+
+    box-shadow:
+        0 4px 9px rgba(79, 70, 229, 0.18),
+        inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   SECOND CARD BUTTON
+========================================================= */
+
+.home-info2::before {
+    background: #edf5ff;
+}
+
+.home-info2 button {
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa 0%,
+            #4285e5 50%,
+            #2563eb 100%
+        );
+
+    border-color: rgba(59, 130, 246, 0.18);
+
+    box-shadow:
+        0 7px 15px rgba(59, 130, 246, 0.17),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.home-info2 button:hover {
+    box-shadow:
+        0 11px 22px rgba(59, 130, 246, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+
+/* =========================================================
+   THIRD CARD BUTTON
+========================================================= */
+
+.home-info3::before {
+    background: #ecfaf1;
+}
+
+.home-info3 button {
+    background:
+        linear-gradient(
+            135deg,
+            #4ade80 0%,
+            #22c55e 48%,
+            #16a34a 100%
+        );
+
+    border-color: rgba(34, 197, 94, 0.18);
+
+    box-shadow:
+        0 7px 15px rgba(34, 197, 94, 0.17),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.home-info3 button:hover {
+    box-shadow:
+        0 11px 22px rgba(34, 197, 94, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.hemo-wrapper > button:last-child {
+    min-height: 38px;
+
+    margin-top: 20px;
+    padding: 0 15px;
+
+    border: 1px solid rgba(239, 68, 68, 0.16);
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8f8,
+            #fff1f1
+        );
+
+    color: #df4b4b;
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px rgba(239, 68, 68, 0.05),
+        inset 0 1px 0 #ffffff;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.hemo-wrapper > button:last-child:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6868,
+            #e54848
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 9px 18px rgba(239, 68, 68, 0.2);
+}
+
+.hemo-wrapper > button:last-child:active {
+    transform: translateY(1px) scale(0.97);
+}
+
+
+/* =========================================================
+   1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .hemo-wrapper {
+        width: calc(100% - 220px);
+
+        margin-left: 220px;
+
+        padding: 28px;
+    }
+
+    .home-div3 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .home-info3 {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================================
+   800px
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hemo-wrapper {
+        width: calc(100% - 70px);
+
+        margin-left: 70px;
+
+        padding: 24px 20px 35px;
+    }
+
+    .home-div1 {
+        height: 59px;
+    }
+
+    .home-div3 {
+        grid-template-columns: 1fr;
+    }
+
+    .home-info3 {
+        grid-column: auto;
+    }
+
+    .home-div3 > div {
+        min-height: 255px;
+    }
+}
+
+
+/* =========================================================
+   600px
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .hemo-wrapper {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 17px 15px 30px;
+    }
+
+
+    /* Header */
+
+    .home-div1 {
+        height: 56px;
+
+        margin-bottom: 17px;
+
+        padding-left: 14px;
+        padding-right: 6px;
+
+        border-radius: 14px;
+    }
+
+    .home-div1 h2 {
+        font-size: 21px;
+    }
+
+    .home-div1 h2 svg {
+        width: 21px;
+        height: 21px;
+
+        margin-left: 6px;
+
+        padding: 4px;
+    }
+
+    .home-profile {
+        height: 39px;
+
+        border-radius: 10px;
+    }
+
+
+    /* Premium */
+
+    .home-div2 {
+        min-height: 195px;
+
+        padding: 23px 21px;
+
+        margin-bottom: 15px;
+
+        border-radius: 16px;
+    }
+
+    .home-div2 h2 {
+        font-size: 18px;
+    }
+
+    .home-div2 p {
+        width: 82%;
+
+        font-size: 10px;
+    }
+
+    .home-div2 > svg {
+        top: 25px;
+        right: 23px;
+
+        width: 21px;
+        height: 21px;
+    }
+
+    .premium {
+        min-height: 41px;
+
+        margin-top: 15px;
+
+        padding: 0 17px;
+
+        border-radius: 10px;
+
+        font-size: 11px;
+    }
+
+
+    /* Cards */
+
+    .home-div3 {
+        gap: 12px;
+    }
+
+    .home-div3 > div {
+        min-height: 235px;
+
+        padding: 21px;
+
+        border-radius: 15px;
+    }
+
+    .home-div3 h2 {
+        font-size: 16px;
+    }
+
+    .home-div3 p {
+        font-size: 10px;
+    }
+
+    .home-div3 button {
+        min-height: 38px;
+    }
+}
+
+
+/* =========================================================
+   400px
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .hemo-wrapper {
+        padding: 14px 12px 25px;
+    }
+
+
+    /* Header */
+
+    .home-div1 {
+        height: 52px;
+
+        padding-left: 12px;
+        padding-right: 5px;
+
+        border-radius: 13px;
+    }
+
+    .home-div1 h2 {
+        font-size: 19px;
+    }
+
+    .home-div1 h2 svg {
+        width: 19px;
+        height: 19px;
+
+        margin-left: 5px;
+
+        padding: 3px;
+    }
+
+    .home-profile {
+        height: 37px;
+    }
+
+    .home-profile > svg {
+        width: 12px;
+        height: 12px;
+
+        margin-right: 5px;
+    }
+
+    .home-profile button {
+        height: 28px;
+
+        padding: 0 6px;
+
+        font-size: 10px;
+    }
+
+
+    /* Premium */
+
+    .home-div2 {
+        min-height: 190px;
+
+        padding: 20px 17px;
+
+        border-radius: 14px;
+    }
+
+    .home-div2 h2 {
+        width: 75%;
+
+        font-size: 17px;
+    }
+
+    .home-div2 p {
+        width: 83%;
+
+        font-size: 9px;
+    }
+
+    .home-div2 > svg {
+        top: 22px;
+        right: 18px;
+
+        width: 19px;
+        height: 19px;
+    }
+
+    .premium {
+        min-height: 39px;
+
+        margin-top: 14px;
+
+        padding: 0 15px;
+
+        font-size: 10px;
+    }
+
+
+    /* Cards */
+
+    .home-div3 {
+        gap: 10px;
+    }
+
+    .home-div3 > div {
+        min-height: 220px;
+
+        padding: 18px;
+
+        border-radius: 13px;
+    }
+
+    .home-div3 h2 {
+        font-size: 15px;
+
+        margin-bottom: 10px;
+    }
+
+    .home-div3 p {
+        font-size: 9px;
+
+        line-height: 1.75;
+    }
+
+    .home-div3 button {
+        min-height: 36px;
+
+        padding: 0 13px;
+
+        border-radius: 9px;
+
+        font-size: 9px;
+    }
+
+
+    /* Logout */
+
+    .hemo-wrapper > button:last-child {
+        min-height: 34px;
+
+        margin-top: 14px;
+
+        padding: 0 12px;
+
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   320px — SAFE
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .hemo-wrapper {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 10px;
+    }
+
+
+    /* Header */
+
+    .home-div1 {
+        height: 49px;
+
+        margin-bottom: 13px;
+
+        padding-left: 10px;
+        padding-right: 4px;
+
+        border-radius: 11px;
+    }
+
+    .home-div1::after {
+        left: 10px;
+        right: 10px;
+    }
+
+    .home-div1 h2 {
+        font-size: 18px;
+
+        letter-spacing: -0.7px;
+    }
+
+    .home-div1 h2 svg {
+        width: 18px;
+        height: 18px;
+
+        margin-left: 5px;
+
+        padding: 3px;
+
+        border-radius: 6px;
+    }
+
+    .home-profile {
+        height: 34px;
+
+        border-radius: 8px;
+
+        padding-left: 4px;
+    }
+
+    .home-profile > svg {
+        width: 10px;
+        height: 10px;
+
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .home-profile button {
+        height: 25px;
+
+        padding: 0 5px;
+
+        font-size: 8px;
+    }
+
+
+    /* Premium */
+
+    .home-div2 {
+        min-height: 185px;
+
+        padding: 18px 15px;
+
+        margin-bottom: 11px;
+
+        border-radius: 13px;
+    }
+
+    .home-div2 h2 {
+        width: 72%;
+
+        margin-bottom: 8px;
+
+        font-size: 15px;
+    }
+
+    .home-div2 p {
+        width: 84%;
+
+        font-size: 8px;
+
+        line-height: 1.75;
+    }
+
+    .home-div2 > svg {
+        top: 19px;
+        right: 15px;
+
+        width: 17px;
+        height: 17px;
+    }
+
+    .premium {
+        min-height: 35px;
+
+        margin-top: 12px;
+
+        padding: 0 12px;
+
+        border-radius: 8px;
+
+        font-size: 9px;
+    }
+
+
+    /* Cards */
+
+    .home-div3 {
+        gap: 9px;
+    }
+
+    .home-div3 > div {
+        min-height: 205px;
+
+        padding: 16px;
+
+        border-radius: 12px;
+    }
+
+    .home-div3 h2 {
+        font-size: 14px;
+
+        line-height: 1.4;
+    }
+
+    .home-div3 p {
+        font-size: 8px;
+
+        line-height: 1.75;
+    }
+
+    .home-div3 button {
+        min-width: 70px;
+
+        min-height: 33px;
+
+        padding: 0 10px;
+
+        border-radius: 8px;
+
+        font-size: 8px;
+    }
+
+
+    /* Logout */
+
+    .hemo-wrapper > button:last-child {
+        min-height: 31px;
+
+        margin-top: 11px;
+
+        padding: 0 10px;
+
+        border-radius: 7px;
+
+        font-size: 8px;
+    }
+}
