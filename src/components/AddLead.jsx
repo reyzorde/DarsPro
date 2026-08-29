@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./AddLead.css";
 import getToday from "../utils/getToday";
+import handleSave from "../utils/saveStudent";
 
 function AddLead({ editor, leads, ref }) {
     const [name, setName] = useState("");
@@ -15,37 +16,42 @@ function AddLead({ editor, leads, ref }) {
         ref.current.close();
     }
 
-    function handleAdd() {
-        const cleanName = name.trim();
-        const cleanPhone = phone.trim();
+async function handleAdd() {
+    const cleanName = name.trim();
+    const cleanPhone = phone.trim();
 
-        if (!cleanName || !cleanPhone || !lesson) {
-            alert("Barcha ma'lumotlarni kiriting!");
-            return;
-        }
-
-
-        const newStudent = {
-            name: cleanName,
-            phone: cleanPhone,
-            date: getToday(),
-            payment: [[getToday() , "Biriktirilmagan" , "To'langan"]],
-            lesson: lesson,
-            attendance:[[getToday() , "Kelgan"]],
-            isActive:true,
-            id: Date.now(),
-            teacherID:0
-        };
-
-        const newStudents = [
-            ...leads,
-            newStudent
-        ];
-
-        editor(newStudents);
-
-        close();
+    if (!cleanName || !cleanPhone || !lesson) {
+        alert("Barcha ma'lumotlarni kiriting!");
+        return;
     }
+
+    const newStudent = {
+        name: cleanName,
+        phone: cleanPhone,
+        date: getToday(),
+        payment: [
+            [getToday(), "Biriktirilmagan", "To'langan"]
+        ],
+        lesson,
+        attendance: [
+            [getToday(), "Kelgan"]
+        ],
+        is_active: true,
+        id: Date.now(),
+        teacher_id: JSON.parse(localStorage.getItem("teacherID"))
+    };
+
+    const savedStudent = await handleSave(newStudent);
+
+    if (!savedStudent) {
+        return;
+    }
+
+    editor([...leads, ...savedStudent]);
+
+    close();
+}
+
 
     return (
         <dialog ref={ref}>

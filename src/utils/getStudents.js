@@ -1,14 +1,18 @@
 import { supabase } from "../supabaseClient";
 
-function getStudents() {
+async function getStudents() {
     try {
-        const savedStudents = supabase.from('students').select('*');
-        if (savedStudents.body) {
-            return JSON.parse(savedStudents);
+        let teacher_id = JSON.parse(localStorage.getItem("teacherID"));
+        if(!teacher_id){
+            throw new Error("Avval login qiling")
         }
-        return [];
+        const {data , error} = await supabase.from('students').select("*").eq("teacher_id" , teacher_id);
+        if (error || !data) {
+            throw new Error(error)
+        }
+        return data || [];
     } catch (error) {
-        alert(error.message)
+        alert(error)
     }
 }
 

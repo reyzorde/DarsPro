@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./Login.css";
 import loginTeacher from "../utils/login";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [password, setPassword] = useState("");
   const [login , setLogin] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  let navigate = useNavigate();
 
 
   return (
@@ -31,7 +33,7 @@ function Login() {
           {showPassword ? "Parolni yashirish" : "Parolni ko'rish"}
         </button>
 
-        <button className="login-btn" onClick={()=> loginTeacher(login , password)}>
+        <button className="login-btn" onClick={()=> loginTeacher(login , password , navigate)}>
           Kirish
         </button>
       </div>

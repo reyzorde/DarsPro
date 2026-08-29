@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./Leads.css";
 import AddLead from "../components/AddLead";
@@ -12,17 +12,23 @@ import getToday from "../utils/getToday";
 function Leads() {
     const dialog = useRef(null);
     const navigate = useNavigate()
-    const [showNotification , setShowNotification] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
 
-    const [students, setStudents] = useState(getStudents());
+    const [students, setStudents] = useState([]);
 
     const [editing, setEditing] = useState(null);
-    const {lesson} = useParams()
+    const { lesson } = useParams()
     const [search, setSearch] = useState("");
 
+    useEffect(() => {
+       async function load() {
+            let data = await getStudents();
+            setStudents(Array.isArray(data) ? data : []);
+        }
+        load()
+    }, [])
     function updateStudents(newStudents) {
         setStudents(newStudents);
-
     }
 
     function handleEdit(id) {
@@ -53,15 +59,15 @@ function Leads() {
     function handleChange(event) {
         const { name, value } = event.target;
         let today = getToday();
-        if(name === "payment"){
+        if (name === "payment") {
             setEditing({
-                ...editing , payment:[...editing.payment.filter(item => item[0].split(".")[1] !== today.split(".")[1]) , [today , "0" , value]]
+                ...editing, payment: [...(editing.payment || []).filter(item => item[0].split(".")[1] !== today.split(".")[1]), [today, "0", value]]
             })
-        }else{
+        } else {
             setEditing({
-            ...editing,
-            [name]: name === "isActive" ? value === "true" : value
-        });
+                ...editing,
+                [name]: name === "isActive" ? value === "true" : value
+            });
         }
     }
 
@@ -74,11 +80,13 @@ function Leads() {
             !editing?.name?.trim() ||
             !editing?.phone?.trim() ||
             !editing?.lesson?.trim() ||
-            !editing?.payment
+            !Array.isArray(editing?.payment) ||
+            editing.payment.length === 0
         ) {
             alert("Ma'lumotlarni to'liq kiriting!");
             return;
         }
+
 
         const updatedStudents = students.map(student => {
             if (student.id === editing.id) {
@@ -103,7 +111,7 @@ function Leads() {
     });
     return (
         <div className="leads">
-            {showNotification && <Notification title={"O'quvchi tahrirlanmoqda"} message={`${editing?.name || " "}ni tahrirlamoqchimisiz . O'ylaymizki bu to'lov haqidagi tahrirlash bo'ladi . `}/>}
+            {showNotification && <Notification title={"O'quvchi tahrirlanmoqda"} message={`${editing?.name || " "}ni tahrirlamoqchimisiz . O'ylaymizki bu to'lov haqidagi tahrirlash bo'ladi . `} />}
             <header className="leads-header">
                 <div className="header-left">
                     <h2>O'quvchilar</h2>
@@ -114,7 +122,7 @@ function Leads() {
                 </div>
 
                 <div className="header-btns">
-                    <button onClick={()=>navigate("/payment")}>To'lovlar</button>
+                    <button onClick={() => navigate("/payment")}>To'lovlar</button>
                     <button
                         className="add-btn"
                         onClick={() => dialog.current.showModal()}
