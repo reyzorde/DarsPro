@@ -1,4 +1,4 @@
-import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaUser } from "react-icons/fa";
 import "./Profile.css"
 import { useNavigate } from "react-router-dom";
 import Rules from "../components/Rules";
@@ -69,7 +69,7 @@ function Profile() {
         <button onClick={() => navigate(-1)}><FaArrowAltCircleLeft /></button>
         <div className="profile-section1">
             <div className="profile-image">
-                <img src={data?.img_url} alt="User image" />
+                {data?.img_url ? <img src={data?.img_url} alt="User image" /> : <FaUser/>}
             </div>
             {!isEdit ? <div className="profile-about">
                 <h2>{data ? data?.name : "Ism kiritilmagan"}</h2>

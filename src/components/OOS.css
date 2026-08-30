@@ -1,89 +1,57 @@
-/* ================================
-   GLOBAL
-================================ */
-
-.oos,
-.oos * {
-    box-sizing: border-box;
-}
+/* =========================================
+   MAIN
+========================================= */
 
 .oos {
-    width: 100%-250px;
+    width: calc(100% - 240px);
     margin-left: 240px;
+
     min-height: 100vh;
-    padding: 100px 30px 40px;
-    background: #f5f7fb;
-    color: #1f2937;
-    overflow-x: hidden;
+
+    padding: 24px;
+    box-sizing: border-box;
+
+    color: #1e293b;
 }
 
 
-/* ================================
-   TOP HEADER / TITLE
-================================ */
+/* =========================================
+   PAGE TITLE
+========================================= */
 
 .oos > h2 {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto 25px;
+    margin: 0 0 20px;
 
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.3;
     font-weight: 700;
 
-    color: #111827;
+    color: #0f172a;
 }
 
 
-/* ================================
-   FIXED HEADER
-================================ */
+/* =========================================
+   HEADER
+========================================= */
 
 .oos-header {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    z-index: 1000;
-
-    width: 100%-250px;
-    margin-left: 240px;
-    min-height: 68px;
-
-    padding: 12px 30px;
-
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 15px;
 
-    background: rgba(255, 255, 255, 0.96);
-
-    border-bottom: 1px solid #e5e7eb;
-
-    box-shadow:
-        0 4px 15px rgba(15, 23, 42, 0.07);
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
 }
 
-
-/* ================================
-   HEADER BUTTONS
-================================ */
-
 .oos-header button {
-    min-height: 42px;
-
-    padding: 0 18px;
-
     border: none;
-    border-radius: 9px;
+    outline: none;
 
-    font-family: inherit;
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    background: #4f46e5;
+    color: #ffffff;
+
     font-size: 14px;
     font-weight: 600;
 
@@ -91,218 +59,378 @@
 
     transition:
         background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.2s ease;
 }
 
-
-/* Qaytish */
-
-.oos-header button:first-child {
-    background: #f1f5f9;
-    color: #334155;
-    border: 1px solid #e2e8f0;
+.oos-header button:hover {
+    background: #4338ca;
 }
 
-.oos-header button:first-child:hover {
-    background: #e2e8f0;
-    color: #0f172a;
-}
-
-.oos-header button:first-child:active {
+.oos-header button:active {
     transform: scale(0.97);
 }
 
 
-/* Premium button */
+/* =========================================
+   STUDENT INFO CARD
+========================================= */
 
-.oos-header .premium {
-    background: linear-gradient(
-        135deg,
-        #6366f1,
-        #4f46e5
-    );
-
-    color: #ffffff;
-
-    box-shadow:
-        0 5px 15px rgba(79, 70, 229, 0.25);
-}
-
-.oos-header .premium:hover {
-    background: linear-gradient(
-        135deg,
-        #4f46e5,
-        #4338ca
-    );
-
-    box-shadow:
-        0 7px 20px rgba(79, 70, 229, 0.35);
-
-    transform: translateY(-1px);
-}
-
-.oos-header .premium:active {
-    transform: scale(0.97);
-}
-
-
-/* ================================
-   TABLE CONTAINER
-================================ */
-
-.oos table {
+.student-info {
     width: 100%;
-    max-width: 1200px;
 
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
 
-    border-collapse: separate;
-    border-spacing: 0;
+    gap: 24px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
 
     background: #ffffff;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.05);
+
+    margin-bottom: 24px;
+}
+
+
+/* =========================================
+   USER ICON
+========================================= */
+
+.student-img {
+    width: 90px;
+    height: 90px;
+
+    min-width: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef2ff;
+    color: #4f46e5;
+
+    font-size: 38px;
+}
+
+
+/* =========================================
+   STUDENT TEXT
+========================================= */
+
+.student-texts {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 14px 40px;
+}
+
+.student-texts h2 {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    font-weight: 500;
+
+    color: #475569;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   TABLES CONTAINER
+========================================= */
+
+.student-tables {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   TABLE WRAPPER BEHAVIOUR
+========================================= */
+
+.student-tables table {
+    width: 100%;
+
+    min-width: 0;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
 
     overflow: hidden;
 
     box-shadow:
-        0 8px 30px rgba(15, 23, 42, 0.06);
+        0 4px 15px rgba(15, 23, 42, 0.05);
 }
 
 
-/* ================================
-   TABLE HEADER
-================================ */
+/* =========================================
+   TABLE HEAD
+========================================= */
 
-.oos thead {
+.student-tables th {
+    padding: 14px 16px;
+
     background: #f8fafc;
-}
-
-.oos th {
-    height: 54px;
-
-    padding: 0 20px;
-
-    text-align: left;
 
     color: #475569;
 
     font-size: 13px;
     font-weight: 700;
 
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    text-align: left;
 
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e2e8f0;
+
+    white-space: nowrap;
 }
 
 
-/* ================================
+/* =========================================
    TABLE BODY
-================================ */
+========================================= */
 
-.oos td {
-    height: 56px;
+.student-tables td {
+    padding: 14px 16px;
 
-    padding: 0 20px;
-
-    color: #374151;
+    color: #334155;
 
     font-size: 14px;
 
     border-bottom: 1px solid #f1f5f9;
+
+    white-space: nowrap;
 }
 
-.oos tbody tr {
-    transition:
-        background 0.2s ease;
-}
-
-.oos tbody tr:hover {
-    background: #f8fafc;
-}
-
-.oos tbody tr:last-child td {
+.student-tables tbody tr:last-child td {
     border-bottom: none;
 }
 
-
-/* ================================
-   STATUS CELL
-================================ */
-
-.oos td:nth-child(2) {
-    font-weight: 600;
+.student-tables tbody tr:hover {
+    background: #f8fafc;
 }
 
 
-/* ================================
-   EMPTY STATE
-================================ */
+/* =========================================
+   PAYMENT TABLE
+========================================= */
+
+.payments th,
+.payments td {
+    text-align: left;
+}
+
+
+/* =========================================
+   LOADING / NOT FOUND
+========================================= */
 
 .oos-not {
-    width: calc(100% - 40px);
-    max-width: 600px;
+    width: 100%;
 
-    min-height: 180px;
-
-    margin: 100px auto 0;
-    padding: 35px 25px;
+    min-height: 300px;
 
     display: flex;
+
+    flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
+    gap: 16px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
     text-align: center;
-
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-
-    box-shadow:
-        0 10px 35px rgba(15, 23, 42, 0.08);
 }
 
 .oos-not h2 {
     margin: 0;
 
-    color: #64748b;
-
     font-size: 20px;
     line-height: 1.4;
+
+    color: #475569;
+}
+
+.oos-not button {
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    background: #4f46e5;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.oos-not button:hover {
+    background: #4338ca;
 }
 
 
-/* ================================
-   1200px
-================================ */
+/* =========================================
+   1000px
+========================================= */
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
+
     .oos {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 20px;
     }
 
-    .oos-header {
-        padding-left: 20px;
-        padding-right: 20px;
+    .student-info {
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .student-texts {
+        gap: 12px 25px;
+    }
+
+    .student-tables {
+        grid-template-columns: 1fr;
     }
 }
 
 
-/* ================================
-   768px TABLET
-================================ */
+/* =========================================
+   850px
+========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
+
+    .student-info {
+        align-items: flex-start;
+    }
+
+    .student-texts {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =====================================================
+   TABLET — 740px dan 1100px gacha
+===================================================== */
+
+@media (min-width: 741px) {
+
     .oos {
-        padding: 90px 15px 30px;
+        width: calc(100% - 240px);
+        margin-left: 240px;
+        padding: 20px;
+    }
+
+    .oos > h2 {
+        font-size: 24px;
+        margin-bottom: 18px;
+    }
+
+    /* Student info */
+
+    .student-info {
+        padding: 20px;
+        gap: 20px;
+        border-radius: 14px;
+    }
+
+    .student-img {
+        width: 75px;
+        height: 75px;
+        min-width: 75px;
+
+        font-size: 32px;
+    }
+
+    .student-texts {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 20px;
+    }
+
+    .student-texts h2 {
+        font-size: 14px;
+    }
+
+
+    /* Tables */
+
+    .student-tables {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 15px;
+
+        min-width: 0;
+    }
+
+    .student-tables table {
+        width: 100%;
+        min-width: 0;
+
+        table-layout: fixed;
+    }
+
+    .student-tables th,
+    .student-tables td {
+        padding: 12px 10px;
+
+        font-size: 12px;
+
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}
+
+
+/* =====================================================
+   KICHIK TABLET — 600px dan 740px gacha
+
+   Bu yerda sidebar yo'q.
+===================================================== */
+
+@media (min-width: 600px) and (max-width: 740px) {
+
+    .oos {
         width: 100%;
         margin-left: 0;
+
+        padding: 24px;
     }
 
     .oos > h2 {
@@ -310,211 +438,543 @@
         margin-bottom: 20px;
     }
 
+
+    /* Header */
+
     .oos-header {
-        min-height: 64px;
-
-        padding: 10px 15px;
-        width: 100%;
-        margin-left: 0;
-
-        gap: 10px;
+        margin-bottom: 20px;
     }
 
     .oos-header button {
-        min-height: 40px;
-        padding: 0 14px;
+        padding: 11px 20px;
+        font-size: 14px;
+    }
+
+
+    /* Student info */
+
+    .student-info {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+
+        padding: 22px;
+        gap: 22px;
+
+        border-radius: 15px;
+    }
+
+    .student-img {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+
+        font-size: 34px;
+    }
+
+    .student-texts {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px 20px;
+    }
+
+    .student-texts h2 {
         font-size: 13px;
+        line-height: 1.5;
     }
 
-    .oos table {
-        border-radius: 10px;
-    }
 
-    .oos th,
-    .oos td {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-}
+    /* Tables */
 
+    .student-tables {
+        width: 100%;
 
-/* ================================
-   576px MOBILE
-================================ */
+        display: flex;
+        flex-direction: column;
 
-@media (max-width: 576px) {
-    .oos {
-        padding: 82px 10px 25px;
-    }
-
-    .oos > h2 {
-        font-size: 21px;
-        line-height: 1.35;
-        margin-bottom: 18px;
-    }
-
-    .oos-header {
-        min-height: 58px;
-
-        padding: 8px 10px;
-
-        gap: 8px;
-    }
-
-    .oos-header button {
-        flex: 1;
+        gap: 20px;
 
         min-width: 0;
-
-        padding: 0 8px;
-
-        font-size: 12px;
-
-        white-space: nowrap;
     }
 
-    .oos th {
-        height: 48px;
-
-        padding: 0 10px;
-
-        font-size: 11px;
-    }
-
-    .oos td {
-        height: 50px;
-
-        padding: 0 10px;
-
-        font-size: 13px;
-    }
-}
-
-
-/* ================================
-   400px
-================================ */
-
-@media (max-width: 400px) {
-    .oos {
-        padding: 78px 8px 20px;
-    }
-
-    .oos > h2 {
-        font-size: 19px;
-    }
-
-    .oos-header {
-        padding: 7px 8px;
-    }
-
-    .oos-header button {
-        min-height: 38px;
-
-        padding: 0 5px;
-
-        font-size: 11px;
-    }
-
-    .oos th {
-        padding: 0 7px;
-        font-size: 10px;
-    }
-
-    .oos td {
-        padding: 0 7px;
-        font-size: 12px;
-    }
-}
-
-
-/* ================================
-   320px — VERY SMALL DEVICES
-================================ */
-
-@media (max-width: 320px) {
-    .oos {
+    .student-tables table {
         width: 100%;
         min-width: 0;
-
-        padding: 75px 5px 15px;
-    }
-
-    .oos > h2 {
-        width: 100%;
-
-        margin-bottom: 15px;
-
-        font-size: 17px;
-        line-height: 1.35;
-
-        overflow-wrap: anywhere;
-    }
-
-    .oos-header {
-        width: 100%;
-
-        min-height: 54px;
-
-        padding: 6px;
-
-        gap: 5px;
-    }
-
-    .oos-header button {
-        min-width: 0;
-        width: 50%;
-
-        min-height: 36px;
-
-        padding: 0 3px;
-
-        border-radius: 7px;
-
-        font-size: 10px;
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .oos table {
-        width: 100%;
-
-        border-radius: 8px;
 
         table-layout: fixed;
     }
 
-    .oos th,
-    .oos td {
-        padding-left: 5px;
-        padding-right: 5px;
+    .student-tables th,
+    .student-tables td {
+        padding: 13px 14px;
+
+        font-size: 13px;
+
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+    }
+}
+
+
+/* =====================================================
+   TELEFON — 400px dan 599px gacha
+===================================================== */
+
+@media (min-width: 400px) and (max-width: 599px) {
+
+    .oos {
+        width: 100%;
+        margin-left: 0;
+
+        padding: 16px;
+    }
+
+
+    /* Title */
+
+    .oos > h2 {
+        font-size: 21px;
+
+        margin-bottom: 16px;
+
+        line-height: 1.3;
+    }
+
+
+    /* Header */
+
+    .oos-header {
+        width: 100%;
+
+        margin-bottom: 18px;
+    }
+
+    .oos-header button {
+        width: 100%;
+
+        padding: 11px;
+
+        font-size: 13px;
+    }
+
+
+    /* Student card */
+
+    .student-info {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 20px 15px;
+
+        gap: 16px;
+
+        border-radius: 13px;
+
+        text-align: center;
+    }
+
+    .student-img {
+        width: 70px;
+        height: 70px;
+
+        min-width: 70px;
+
+        font-size: 29px;
+    }
+
+
+    .student-texts {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 9px;
+    }
+
+    .student-texts h2 {
+        width: 100%;
+
+        margin: 0;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* Tables */
+
+    .student-tables {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 16px;
+
+        min-width: 0;
+
+        overflow: visible;
+    }
+
+    /*
+       Table'ni o'ziga scroll beramiz.
+       Butun sahifa gorizontal siljimaydi.
+    */
+
+    .student-tables table {
+        width: 100%;
+
+        min-width: 0;
+
+        display: table;
+
+        table-layout: fixed;
 
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+
+        border-radius: 10px;
     }
 
-    .oos th {
-        height: 42px;
-        font-size: 9px;
+    .student-tables th,
+    .student-tables td {
+        padding: 11px 9px;
+
+        font-size: 12px;
+
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
     }
 
-    .oos td {
-        height: 45px;
+    .student-tables th:first-child,
+    .student-tables td:first-child {
+        width: 50%;
+    }
+
+    .student-tables th:last-child,
+    .student-tables td:last-child {
+        width: 50%;
+    }
+}
+
+
+/* =====================================================
+   KATTA TELEFON — 321px dan 399px gacha
+===================================================== */
+
+@media (min-width: 321px) and (max-width: 399px) {
+
+    .oos {
+        width: 100%;
+        margin-left: 0;
+
+        padding: 13px;
+    }
+
+
+    /* Title */
+
+    .oos > h2 {
+        font-size: 20px;
+
+        line-height: 1.3;
+
+        margin-bottom: 14px;
+    }
+
+
+    /* Header */
+
+    .oos-header {
+        width: 100%;
+
+        margin-bottom: 15px;
+    }
+
+    .oos-header button {
+        width: 100%;
+
+        padding: 10px;
+
+        font-size: 13px;
+    }
+
+
+    /* Student info */
+
+    .student-info {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 17px 11px;
+
+        gap: 14px;
+
+        border-radius: 11px;
+
+        text-align: center;
+    }
+
+    .student-img {
+        width: 64px;
+        height: 64px;
+
+        min-width: 64px;
+
+        font-size: 26px;
+    }
+
+    .student-texts {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .student-texts h2 {
+        margin: 0;
+
+        font-size: 12px;
+
+        line-height: 1.45;
+
+        overflow-wrap: anywhere;
+    }
+
+
+    /* Tables */
+
+    .student-tables {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 13px;
+
+        min-width: 0;
+    }
+
+    .student-tables table {
+        width: 100%;
+
+        min-width: 0;
+
+        table-layout: fixed;
+
+        border-radius: 9px;
+    }
+
+    .student-tables th,
+    .student-tables td {
+        padding: 9px 7px;
+
         font-size: 11px;
+
+        line-height: 1.4;
+
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+    }
+}
+
+
+/* =====================================================
+   320px VA UNDAN KICHIK
+===================================================== */
+
+@media (max-width: 320px) {
+
+    .oos {
+        width: 100%;
+        margin-left: 0;
+
+        padding: 8px;
     }
 
-    .oos-not {
-        width: calc(100% - 20px);
 
-        margin-top: 80px;
+    /* Title */
 
-        padding: 25px 15px;
+    .oos > h2 {
+        width: 100%;
+
+        margin: 0 0 12px;
+
+        font-size: 18px;
+
+        line-height: 1.3;
     }
 
-    .oos-not h2 {
-        font-size: 17px;
+
+    /* Header */
+
+    .oos-header {
+        width: 100%;
+
+        margin-bottom: 12px;
+    }
+
+    .oos-header button {
+        width: 100%;
+
+        padding: 9px 8px;
+
+        font-size: 12px;
+
+        border-radius: 7px;
+    }
+
+
+    /* =================================================
+       STUDENT CARD
+    ================================================= */
+
+    .student-info {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 14px 8px;
+
+        gap: 11px;
+
+        box-sizing: border-box;
+
+        border-radius: 9px;
+
+        text-align: center;
+    }
+
+    .student-img {
+        width: 55px;
+        height: 55px;
+
+        min-width: 55px;
+
+        font-size: 22px;
+    }
+
+
+    .student-texts {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 6px;
+
+        min-width: 0;
+    }
+
+    .student-texts h2 {
+        width: 100%;
+
+        margin: 0;
+
+        font-size: 11px;
+
+        line-height: 1.4;
+
+        font-weight: 500;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+    }
+
+
+    /* =================================================
+       TABLES
+
+       320px'da ikkita table hech qachon yonma-yon
+       bo'lmaydi.
+    ================================================= */
+
+    .student-tables {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        min-width: 0;
+
+        overflow: hidden;
+    }
+
+
+    .student-tables table {
+        width: 100%;
+
+        min-width: 0;
+
+        max-width: 100%;
+
+        table-layout: fixed;
+
+        border-radius: 8px;
+
+        box-sizing: border-box;
+    }
+
+
+    .student-tables th,
+    .student-tables td {
+        width: 50%;
+
+        padding: 8px 6px;
+
+        font-size: 10px;
+
+        line-height: 1.35;
+
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+
+        box-sizing: border-box;
+    }
+
+
+    /* Empty message */
+
+    .student-tables td[colspan] {
+        text-align: center;
+
+        padding: 12px 6px;
     }
 }

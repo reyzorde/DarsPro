@@ -12,8 +12,7 @@ function SideBar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <h1>Leads</h1>
-        <h2>App</h2>
+        <h1>Dars Pro</h1>
       </div>
 
       <nav className="sidebar-nav">

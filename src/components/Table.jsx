@@ -1,155 +1,392 @@
-import { FaPen } from "react-icons/fa";
+import { useState } from "react";
+import { FaPen, FaUser, FaSave } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import getToday from "../utils/getToday";
+import { supabase } from "../supabaseClient";
+
+function Table({ filteredStudents , editing , handleChange , handleEdit , handleSave , setStudents}) {
+    const navigate = useNavigate();
+    const [editingAttendance, setEditingAttendance] = useState(false);
+    const [attendanceChanges, setAttendanceChanges] = useState({});
+    function handleAttendanceChange(studentId, value) {
+        setAttendanceChanges(prev => ({
+            ...prev,
+            [studentId]: value
+        }));
+
+    }
+    async function handleAttendanceSave() {
+
+        if (Object.keys(attendanceChanges).length === 0) {
+            setEditingAttendance(false);
+            return;
+        }
+
+        try {
+
+            const today = getToday();
+
+            const teacherId = JSON.parse(
+                localStorage.getItem("teacherID")
+            );
+
+            if (!teacherId) {
+                alert("Iltimos, avval hisobingizga kiring");
+                navigate("/login");
+                return;
+            }
+            for (const studentId of Object.keys(attendanceChanges)) {
+
+                const newStatus = attendanceChanges[studentId];
+
+                const student = filteredStudents.find(
+                    item => String(item.id) === String(studentId)
+                );
+
+                if (!student) {
+                    continue;
+                }
+
+                const oldAttendance = Array.isArray(student.attendance)
+                    ? [...student.attendance]
+                    : [];
+
+                const todayIndex = oldAttendance.findIndex(
+                    item => item?.[0] === today
+                );
+
+                let newAttendance;
+
+                if (todayIndex !== -1) {
+
+                    newAttendance = [...oldAttendance];
+
+                    newAttendance[todayIndex] = [
+                        today,
+                        newStatus
+                    ];
+
+                }
+
+                else {
+
+                    newAttendance = [...oldAttendance, [ today,newStatus]];
+
+                }
+
+                const { data, error } = await supabase
+                    .from("students")
+                    .update({
+                        attendance: newAttendance
+                    })
+                    .eq("id", student.id)
+                    .eq("teacher_id", teacherId)
+                    .select()
+                    .single();
+
+                if (error) {
+                    throw error;
+                }
+
+                setStudents(prevStudents =>
+                    prevStudents.map(item =>
+                        item.id === student.id
+                            ? data
+                            : item
+                    )
+                );
+
+            }
+
+            setAttendanceChanges({});
+            setEditingAttendance(false);
+
+        } catch (error) {
+
+            console.error(
+                "Davomatni saqlashda xatolik:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Davomatni saqlashda xatolik yuz berdi"
+            );
+        }
+    }
 
 
-function Table({ filteredStudents, editing, handleChange, handleEdit, handleSave }) {
-    return <table className="students-table">
+    return (
+        <table className="students-table">
 
-        <thead>
-            <tr>
-                <th>O'quvchilar</th>
-                <th>Telefon</th>
-                <th>Kelgan sana</th>
-                <th>Dars turi</th>
-                <th>To'lov holati</th>
-                <th>O'quvchi holati</th>
-                <th>Tahrirlash</th>
-            </tr>
-        </thead>
+            <thead>
 
-        <tbody>
-            {filteredStudents.map(lead => (
-                <tr key={lead.id}>
+                <tr>
 
-                    <td className="student-name">
-                        {editing?.id === lead.id ? (
-                            <input
-                                type="text"
-                                name="name"
-                                value={editing?.name || " "}
-                                onChange={handleChange}
-                            />
-                        ) : (
-                            lead?.name
-                        )}
-                    </td>
+                    <th>
+                        O'quvchilar
+                    </th>
 
-                    <td className="student-phone">
-                        {editing?.id === lead.id ? (
-                            <input
-                                type="text"
-                                name="phone"
-                                value={editing?.phone || " "}
-                                onChange={handleChange}
-                            />
-                        ) : (
-                            lead?.phone
-                        )}
-                    </td>
+                    <th>
+                        Dars turi
+                    </th>
 
-                    <td>
-                        {lead?.date}
-                    </td>
+                    <th>
+                        To'lov holati
+                    </th>
 
-                    <td>
-                        {editing?.id === lead.id ? (
-                            <select
-                                name="lesson"
-                                value={editing?.lesson || " "}
-                                onChange={handleChange}
-                            >
-                                <option value="">
-                                    Tanlang
-                                </option>
 
-                                <option value="Matematika">
-                                    Matematika
-                                </option>
+                    {/* DAVOMAT USTUNI */}
 
-                                <option value="Fizika">
-                                    Fizika
-                                </option>
+                    <th>
 
-                                <option value="SAT">
-                                    SAT
-                                </option>
+                        <button
+                            type="button"
+                            className="column-edit-btn"
+                            onClick={() => {
 
-                                <option value="Ingliz-tili">
-                                    Ingliz-tili
-                                </option>
+                                if (editingAttendance) {
 
-                                <option value="Biologiya">
-                                    Biologiya
-                                </option>
+                                    handleAttendanceSave();
 
-                                <option value="Kimyo">
-                                    Kimyo
-                                </option>
-                            </select>
-                        ) : (
-                            `${lead.lesson} Guruhi`
-                        )}
-                    </td>
+                                } else {
 
-                    <td>
-                        {editing?.id === lead.id ? (
-                            <select
-                                name="payment"
-                                value={editing?.payment || " "}
-                                onChange={handleChange}
-                            >
-                                <option value="">
-                                    Tanlang
-                                </option>
+                                    setEditingAttendance(true);
 
-                                <option value="To'langan">
-                                    To'langan
-                                </option>
+                                }
 
-                                <option value="To'lanmagan">
-                                    To'lanmagan
-                                </option>
+                            }}
+                        >
 
-                                <option value="Kechikgan">
-                                    O'tib ketgan
-                                </option>
-                            </select>
-                        ) : (
-                            lead.payment.at(-1)[2]
-                        )}
-                    </td>
-                    <td>{editing?.id === lead?.id ? <select
-                        name="isActive"
-                        value={String(editing?.isActive ?? "")}
-                        onChange={handleChange}
-                    >
-                        <option value="">Holat</option>
-                        <option value="true">Faol</option>
-                        <option value="false">Nofaol</option>
-                    </select> : lead.isActive ? "Faol" : "Nofaol"}</td>
+                            {editingAttendance ? (
+                                <>
+                                    Saqlash
+                                </>
+                            ) : (
+                                <>
+                                    Davomat
+                                </>
+                            )}
 
-                    <td>
-                        {editing?.id === lead.id ? (
-                            <button
-                                className="save-btn"
-                                onClick={handleSave}
-                            >
-                                Saqlash
-                            </button>
-                        ) : (
-                            <button
-                                className="edit-btn"
-                                onClick={() => handleEdit(lead.id)}
-                            >
-                                <FaPen />
-                            </button>
-                        )}
-                    </td>
+                        </button>
+
+                    </th>
+
+
+                    <th>
+                        O'quvchi holati
+                    </th>
+
+                    <th>
+                        Tahrirlash
+                    </th>
+
+                    <th>
+                        Sahifasi
+                    </th>
 
                 </tr>
-            ))}
-        </tbody>
 
-    </table>
+            </thead>
+
+
+            <tbody>
+
+                {filteredStudents.map(lead => (
+
+                    <tr key={lead.id}>
+
+                        {/* ISM */}
+
+                        <td className="student-name">
+
+                            {editing?.id === lead.id ? (
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={editing?.name || ""}
+                                    onChange={handleChange}
+                                />
+
+                            ) : (
+
+                                lead?.name
+
+                            )}
+
+                        </td>
+
+                        <td>
+
+                            {editing?.id === lead.id ? (
+
+                                <select
+                                    name="lesson"
+                                    value={editing?.lesson || ""}
+                                    onChange={handleChange}
+                                >
+
+                                    <option value="">
+                                        Tanlang
+                                    </option>
+
+                                    <option value="Matematika">
+                                        Matematika
+                                    </option>
+
+                                    <option value="Fizika">
+                                        Fizika
+                                    </option>
+
+                                    <option value="SAT">
+                                        SAT
+                                    </option>
+
+                                    <option value="Ingliz-tili">
+                                        Ingliz-tili
+                                    </option>
+
+                                    <option value="Biologiya">
+                                        Biologiya
+                                    </option>
+
+                                    <option value="Kimyo">
+                                        Kimyo
+                                    </option>
+
+                                </select>
+
+                            ) : (
+
+                                `${lead.lesson} Guruhi`
+
+                            )}
+
+                        </td>
+
+
+                        {/* TO'LOV */}
+
+                        <td>
+
+                            {editing?.id === lead.id ? (
+
+                                <select
+                                    name="payment"
+                                    value={
+                                        editing?.payment || ""
+                                    }
+                                    onChange={handleChange}
+                                >
+
+                                    <option value="">
+                                        Tanlang
+                                    </option>
+
+                                    <option value="To'langan">
+                                        To'langan
+                                    </option>
+
+                                    <option value="To'lanmagan">
+                                        To'lanmagan
+                                    </option>
+
+                                    <option value="Kutilayotgan">
+                                        Kutilayotgan
+                                    </option>
+
+                                </select>
+
+                            ) : (
+
+                                lead?.payment?.at(-1)?.[2] ||
+                                "Kiritilmagan"
+
+                            )}
+
+                        </td>
+                        <td>
+
+                            {editingAttendance ? (
+
+                                <select
+                                    value={
+                                        attendanceChanges[lead.id] ??
+                                        lead?.attendance?.at(-1)?.[1] ??
+                                        ""
+                                    }
+                                    onChange={e =>
+                                        handleAttendanceChange(
+                                            lead.id,
+                                            e.target.value
+                                        )
+                                    }
+                                >
+                                    <option value="">
+                                        Tanlang
+                                    </option>
+                                    <option value="Kelgan">
+                                        Kelgan
+                                    </option>
+                                    <option value="Kelmagan">
+                                        Kelmagan
+                                    </option>
+                                    <option value="Kechikgan">
+                                        Kechikgan
+                                    </option>
+                                </select>
+                            ) : (
+                                lead?.attendance?.at(-1)?.[1] ||
+                                "Kiritilmagan"
+                            )}
+                        </td>
+                        <td>
+                            {editing?.id === lead.id ? (
+                                <select
+                                    name="isActive"
+                                    value={String(
+                                        editing?.is_active ?? ""
+                                    )}
+                                    onChange={handleChange}
+                                >
+                                    <option value="">
+                                        Holat
+                                    </option>
+                                    <option value="true">
+                                        Faol
+                                    </option>
+                                    <option value="false">
+                                        Nofaol
+                                    </option>
+                                </select>
+                            ) : (
+                                lead.is_active
+                                    ? "Faol"
+                                    : "Nofaol"
+                            )}
+                        </td>
+                        <td>
+                            {editing?.id === lead.id ? (
+                                <button className="save-btn" onClick={handleSave}>
+                                    Saqlash
+                                </button>
+                            ) : (
+                                <button className="edit-btn" onClick={() => handleEdit(lead.id)}>
+                                    <FaPen />
+                                </button>
+                            )}
+                        </td>
+                        <td>
+                            <button onClick={() => navigate(`/oos/${lead.id}`)} className="edit-btn">
+                                <FaUser />
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
 }
 
-export default Table
+export default Table;

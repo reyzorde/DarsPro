@@ -4,86 +4,51 @@ import "./Attendance.css"
 import { FaPen, FaSearch } from "react-icons/fa";
 import getToday from "../utils/getToday";
 import getStudents from "../utils/getStudents";
+import { supabase } from "../supabaseClient";
+
 
 function Attendance() {
-    const [students, setStudents] = useState(getStudents())
+    const [students, setStudents] = useState([]);
     const navigate = useNavigate()
-    const [updateStudents, setUpdateStudents] = useState(null);
-    const [newattendance, setNewattendance] = useState(null);
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState("");
     const filteredStudents = students.filter(student => {
         const text = search.toLowerCase();
-        return student.name?.toLowerCase().includes(text);
+
+        return student?.name?.toLowerCase().includes(text);
     });
+
     const absentStudents = filteredStudents?.filter(x => x.attendance.at(-1)[1] === "Kelmagan").length;
     const presentStudents = filteredStudents?.filter(x => x.attendance.at(-1)[1] !== "Kelmagan").length;
 
     useEffect(() => {
-        if (!students.length) return;
-
-        const finder = students.find(x => x.isActive);
-
-        if (!finder) return;
-
-        const lastDate = finder.attendance?.at(-1)?.[0];
-
-        if (lastDate === getToday()) return;
-
-        const update = students.map(student => ({
-            ...student,
-            attendance: [
-                ...(student.attendance || []),
-                [getToday(), "kiritilmagan"]
-            ]
-        }));
-
-        localStorage.setItem("students", JSON.stringify(update));
-        setStudents(update);
-
+        async function load() {
+            let data = await getStudents();
+            setStudents(data);
+        }
+        load()
     }, []);
 
+    function getTodayAttendance(student) {
+        const today = getToday();
 
-    function handleEdit(id) {
-        let updating = students.find(item => item.id === id)
-        setUpdateStudents(updating);
+        return student.attendance?.find(
+            item => item[0] === today
+        )?.[1] || "Kiritilmagan";
     }
 
-    function handleSave(id) {
-        if (!newattendance) {
-            alert("To'ldirilmagan maydon mavjud");
-            return;
-        }
 
-        const newStudents = students.map(student => {
-            if (student.id === id) {
-                return {
-                    ...student,
-                    attendance: [
-                        ...student.attendance.filter(item => item[0] !== getToday()),
-                        [getToday(), newattendance]
-                    ]
-                };
-            }
+    function persentageStudents(state) {
+        const absentStudents = filteredStudents.filter(
+            student => getTodayAttendance(student) === "Kelmagan"
+        ).length;
 
-            return student;
-        });
-
-        setStudents(newStudents)
-
-        localStorage.setItem(
-            "students",
-            JSON.stringify(newStudents)
-        );
-
-        setNewattendance(null);
-        setUpdateStudents(null);
-    }
-
-    function persentageStudents(state){
+        const presentStudents = filteredStudents.filter(
+            student => getTodayAttendance(student) !== "Kelmagan"
+        ).length;
         if(state === "absent"){
-            return Math.floor((absentStudents*100)/(absentStudents + presentStudents))
-        }else {
-             return Math.ceil((presentStudents*100)/(absentStudents + presentStudents))
+            return Math.floor((absentStudents*100)/(absentStudents+presentStudents))
+        }else{
+            return Math.ceil((presentStudents*100)/(absentStudents+presentStudents))
         }
     }
 
@@ -98,12 +63,12 @@ function Attendance() {
             <div className="att-div1">
                 <h2>Kelmaganlar</h2>
                 <p>{absentStudents ? absentStudents : 0}</p>
-                <p>{persentageStudents("absent")} foiz</p>
+                <p>{persentageStudents("absent") || 0} foiz</p>
             </div>
             <div className="att-div2">
                 <h2>Kelganlar</h2>
                 <p>{presentStudents ? presentStudents : 0}</p>
-                <p>{persentageStudents("Present")} foiz</p>
+                <p>{persentageStudents("Present") || 0} foiz</p>
             </div>
         </div>
         <div className="search-input">
@@ -117,8 +82,6 @@ function Attendance() {
                         <td>Ism</td>
                         <td>Sana</td>
                         <td>Holat</td>
-                        <td>Guruh</td>
-                        <td>Tahrirlash</td>
                         <td>Ko'rish</td>
                     </tr>
                 </thead>
@@ -127,28 +90,8 @@ function Attendance() {
                         return <tr key={item?.id}>
                             <td>{item?.name}</td>
                             <td>{getToday()}</td>
-                            {updateStudents?.id !== item.id ? (
-                                <td>
-                                    {item.attendance?.at(-1) ? item.attendance?.at(-1)[1] : "Kiritilmagan"}
-                                </td>
-                            ) : (
-                                <td>
-                                    <select
-                                        value={newattendance || ""}
-                                        onChange={e => setNewattendance(e.target.value)}
-                                    >
-                                        <option value="">Kiritilmagan</option>
-                                        <option value="Kelgan">Kelgan</option>
-                                        <option value="Kelmagan">Kelmagan</option>
-                                        <option value="Kechikgan">Kechikgan</option>
-                                    </select>
-                                </td>
-                            )}
-                            <td>{item?.lesson}</td>
-                            <td>
-                                {!updateStudents ? <button onClick={() => handleEdit(item?.id)}><FaPen /></button> : <button onClick={e => handleSave(item?.id)}>Saqlash</button>}
-                            </td>
-                            <td><button onClick={()=>navigate(`/oos/${item?.id}`)}>O'quvchi davomatini ko'rish</button></td>
+                            <td>{getTodayAttendance(item)} </td>
+                            <td><button onClick={() => navigate(`/oos/${item?.id}`)}>O'quvchi davomatini ko'rish</button></td>
                         </tr>
                     })}
                 </tbody>

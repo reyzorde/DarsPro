@@ -1,12 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AddLead.css";
 import getToday from "../utils/getToday";
 import handleSave from "../utils/saveStudent";
+import { supabase } from "../supabaseClient";
 
 function AddLead({ editor, leads, ref }) {
+    const [lessons, setLessons] = useState([])
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [lesson, setLesson] = useState("");
+
+    useEffect(() => {
+        async function loadLessons() {
+            const teacherId = JSON.parse(
+                localStorage.getItem("teacherID")
+            );
+
+            if (!teacherId) {
+                return;
+            }
+
+            const { data, error } = await supabase.from("lessons").select("*").or(`teacher_id.eq.${teacherId},teacher_id.is.null`).order("id", { ascending: true });
+          
+            if (error) {
+                console.error(error);
+                return;
+            }
+
+            setLessons(data || []);
+        }
+
+        loadLessons();
+    }, []);
+
 
     function close() {
         setName("");
@@ -16,41 +42,41 @@ function AddLead({ editor, leads, ref }) {
         ref.current.close();
     }
 
-async function handleAdd() {
-    const cleanName = name.trim();
-    const cleanPhone = phone.trim();
+    async function handleAdd() {
+        const cleanName = name.trim();
+        const cleanPhone = phone.trim();
 
-    if (!cleanName || !cleanPhone || !lesson) {
-        alert("Barcha ma'lumotlarni kiriting!");
-        return;
+        if (!cleanName || !cleanPhone || !lesson) {
+            alert("Barcha ma'lumotlarni kiriting!");
+            return;
+        }
+
+        const newStudent = {
+            name: cleanName,
+            phone: cleanPhone,
+            date: getToday(),
+            payment: [
+                [getToday(), "Biriktirilmagan", "To'langan"]
+            ],
+            lesson,
+            attendance: [
+                [getToday(), "Kelgan"]
+            ],
+            is_active: true,
+            id: Date.now(),
+            teacher_id: JSON.parse(localStorage.getItem("teacherID"))
+        };
+
+        const savedStudent = await handleSave(newStudent);
+
+        if (!savedStudent) {
+            return;
+        }
+
+        editor([...leads, ...savedStudent]);
+
+        close();
     }
-
-    const newStudent = {
-        name: cleanName,
-        phone: cleanPhone,
-        date: getToday(),
-        payment: [
-            [getToday(), "Biriktirilmagan", "To'langan"]
-        ],
-        lesson,
-        attendance: [
-            [getToday(), "Kelgan"]
-        ],
-        is_active: true,
-        id: Date.now(),
-        teacher_id: JSON.parse(localStorage.getItem("teacherID"))
-    };
-
-    const savedStudent = await handleSave(newStudent);
-
-    if (!savedStudent) {
-        return;
-    }
-
-    editor([...leads, ...savedStudent]);
-
-    close();
-}
 
 
     return (
@@ -77,39 +103,24 @@ async function handleAdd() {
             </label>
 
             <select
-                name="lessons"
-                id="lessons"
                 value={lesson}
                 onChange={e => setLesson(e.target.value)}
+                id="lessons"
             >
                 <option value="">
-                    Tanlang
+                    Guruhni tanlang
                 </option>
 
-                <option value="Matematika">
-                    Matematika
-                </option>
-
-                <option value="Fizika">
-                    Fizika
-                </option>
-
-                <option value="SAT">
-                    SAT
-                </option>
-
-                <option value="Ingliz-tili">
-                    Ingliz-tili
-                </option>
-
-                <option value="Biologiya">
-                    Biologiya
-                </option>
-
-                <option value="Kimyo">
-                    Kimyo
-                </option>
+                {lessons.map(item => (
+                    <option
+                        key={item.id}
+                        value={item.lesson}
+                    >
+                        {item.lesson}
+                    </option>
+                ))}
             </select>
+
 
             <button
                 onClick={handleAdd}

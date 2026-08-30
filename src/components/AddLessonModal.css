@@ -1,0 +1,134 @@
+.add-lesson-modal {
+    width: 420px;
+    max-width: calc(100% - 32px);
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.add-lesson-modal::backdrop {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+}
+
+.add-lesson-content {
+    padding: 28px;
+}
+
+.add-lesson-content h2 {
+    margin: 0 0 8px;
+    color: #1e293b;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.add-lesson-content p {
+    margin: 0 0 24px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.add-lesson-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-lesson-content input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 15px;
+
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #1e293b;
+    background: #f8fafc;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+.add-lesson-content input::placeholder {
+    color: #94a3b8;
+}
+
+.add-lesson-content input:focus {
+    border-color: #4f46e5;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.add-lesson-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.add-lesson-buttons button {
+    border: none;
+    border-radius: 9px;
+    padding: 11px 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.add-lesson-buttons button[type="button"] {
+    color: #475569;
+    background: #e2e8f0;
+}
+
+.add-lesson-buttons button[type="button"]:hover {
+    background: #cbd5e1;
+}
+
+.add-lesson-buttons button[type="submit"] {
+    color: #ffffff;
+    background: #4f46e5;
+}
+
+.add-lesson-buttons button[type="submit"]:hover {
+    background: #4338ca;
+}
+
+.add-lesson-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* Telefon uchun */
+
+@media (max-width: 500px) {
+
+    .add-lesson-modal {
+        width: calc(100% - 24px);
+        border-radius: 14px;
+    }
+
+    .add-lesson-content {
+        padding: 22px;
+    }
+
+    .add-lesson-content h2 {
+        font-size: 21px;
+    }
+
+    .add-lesson-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .add-lesson-buttons button {
+        width: 100%;
+    }
+}
