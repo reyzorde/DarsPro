@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import getToday from "../utils/getToday";
 import { supabase } from "../supabaseClient";
 
-function Table({ filteredStudents , editing , handleChange , handleEdit , handleSave , setStudents}) {
+function Table({ filteredStudents, editing, handleChange, handleEdit, handleSave, setStudents }) {
     const navigate = useNavigate();
     const [editingAttendance, setEditingAttendance] = useState(false);
     const [attendanceChanges, setAttendanceChanges] = useState({});
@@ -70,7 +70,7 @@ function Table({ filteredStudents , editing , handleChange , handleEdit , handle
 
                 else {
 
-                    newAttendance = [...oldAttendance, [ today,newStatus]];
+                    newAttendance = [...oldAttendance, [today, newStatus]];
 
                 }
 
@@ -194,7 +194,7 @@ function Table({ filteredStudents , editing , handleChange , handleEdit , handle
 
                 {filteredStudents.map(lead => (
 
-                    <tr key={lead.id}>
+                    <tr key={lead.id} className={!lead.is_active ? "disabled-students" : ""}>
 
                         {/* ISM */}
 
@@ -269,43 +269,9 @@ function Table({ filteredStudents , editing , handleChange , handleEdit , handle
                         {/* TO'LOV */}
 
                         <td>
-
-                            {editing?.id === lead.id ? (
-
-                                <select
-                                    name="payment"
-                                    value={
-                                        editing?.payment || ""
-                                    }
-                                    onChange={handleChange}
-                                >
-
-                                    <option value="">
-                                        Tanlang
-                                    </option>
-
-                                    <option value="To'langan">
-                                        To'langan
-                                    </option>
-
-                                    <option value="To'lanmagan">
-                                        To'lanmagan
-                                    </option>
-
-                                    <option value="Kutilayotgan">
-                                        Kutilayotgan
-                                    </option>
-
-                                </select>
-
-                            ) : (
-
-                                lead?.payment?.at(-1)?.[2] ||
-                                "Kiritilmagan"
-
-                            )}
-
+                            {lead?.payment?.at(-1)?.[2] || "Kiritilmagan"}
                         </td>
+
                         <td>
 
                             {editingAttendance ? (
@@ -341,38 +307,14 @@ function Table({ filteredStudents , editing , handleChange , handleEdit , handle
                                 "Kiritilmagan"
                             )}
                         </td>
-                        <td>
-                            {editing?.id === lead.id ? (
-                                <select
-                                    name="isActive"
-                                    value={String(
-                                        editing?.is_active ?? ""
-                                    )}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">
-                                        Holat
-                                    </option>
-                                    <option value="true">
-                                        Faol
-                                    </option>
-                                    <option value="false">
-                                        Nofaol
-                                    </option>
-                                </select>
-                            ) : (
-                                lead.is_active
-                                    ? "Faol"
-                                    : "Nofaol"
-                            )}
-                        </td>
+                        <td>{lead.is_active ? "Faol" : "Nofaol"}</td>
                         <td>
                             {editing?.id === lead.id ? (
                                 <button className="save-btn" onClick={handleSave}>
                                     Saqlash
                                 </button>
                             ) : (
-                                <button className="edit-btn" onClick={() => handleEdit(lead.id)}>
+                                <button className="edit-btn" onClick={() => handleEdit(lead.id)}  disabled={!lead.is_active}>
                                     <FaPen />
                                 </button>
                             )}

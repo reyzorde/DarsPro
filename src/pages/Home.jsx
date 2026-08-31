@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import {  FaRocket, FaUser } from "react-icons/fa"
+import {  FaBell, FaRocket, FaUser } from "react-icons/fa"
 import "./Home.css"
 import PremiumModal from "../components/PremiumModal";
 import logo from "../public/logo.png"
 import { useRef } from "react";
+import Clock from "../components/Clock";
 
 function Home() {
     let navigate = useNavigate()
@@ -13,8 +14,8 @@ function Home() {
         <div className="home-div1">
             <img src={logo} alt="DarsPlus logo" width={80} height={80}/>
             <div className="home-profile">
-                <FaUser />
                 <button onClick={()=>navigate("/profile")}>Profil</button>
+                <button onClick={()=>navigate("/notification")}><FaBell/></button>
             </div>
         </div>
         <div className="home-div2">

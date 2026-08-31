@@ -58,12 +58,6 @@ function Leads() {
     }
 
     function handleEdit(id) {
-        const password = prompt("Edit qilish uchun parolni kiriting:");
-
-        if (password !== "s1r0j1dd1n") {
-            alert("Parol noto'g'ri!");
-            return;
-        }
         setShowNotification(true)
         setTimeout(() => {
             setShowNotification(false)

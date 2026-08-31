@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./OOS.css";
-import PremiumModal from "./PremiumModal";
 import getStudents from "../utils/getStudents";
 import { FaUser } from "react-icons/fa";
+import disActivator from "../utils/disActivateStudent";
 
 function OnlyOneStudent() {
     const { studentID } = useParams();
@@ -120,6 +120,8 @@ function OnlyOneStudent() {
                     </tbody>
                 </table>
             </div>
+
+            {student?.is_active ? <button className="oos-btn deactivate-btn" onClick={()=>disActivator(studentID , "faolsiz")}>O'quvchi faolsizlantirish</button> : <button className="oos-btn activate-btn" onClick={()=>disActivator(studentID , "faol")}>O'quvchini faollashtirish</button>}
         </div>
     );
 }

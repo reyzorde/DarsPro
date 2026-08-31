@@ -1,0 +1,43 @@
+.clock {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: calc(100%-240px);
+  margin-left: 240px;
+
+  padding: 12px 18px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.clock h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.clock h2:last-child {
+  color: #635bff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 740px){
+.clock{
+    width: 100%;
+    margin-left: 0;
+}
+}
+
+/* Telefon uchun */
+@media (max-width: 600px) {
+  .clock {
+    display: none;
+  }
+}

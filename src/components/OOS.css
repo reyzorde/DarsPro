@@ -978,3 +978,57 @@
         padding: 12px 6px;
     }
 }
+.oos-btn {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+
+    color: white;
+}
+
+/* Faolsizlantirish */
+.deactivate-btn {
+    background: #ef4444;
+    box-shadow: 0 3px 8px rgba(239, 68, 68, 0.2);
+}
+
+.deactivate-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Faollashtirish */
+.activate-btn {
+    background: #22c55e;
+    box-shadow: 0 3px 8px rgba(34, 197, 94, 0.2);
+}
+
+.activate-btn:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(34, 197, 94, 0.3);
+}
+
+.oos-btn:active {
+    transform: translateY(0);
+}
+
+.oos-btn:focus {
+    outline: none;
+}
+
+.oos-btn:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.25);
+    outline-offset: 2px;
+}

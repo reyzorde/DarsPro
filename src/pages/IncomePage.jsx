@@ -69,13 +69,20 @@ function InCome() {
 
     async function handleSave(studentId) {
 
-        // To'lov summasi kiritilganligini tekshiramiz
+        // -----------------------------------------
+        // 1. To'lov summasini tekshirish
+        // -----------------------------------------
+
         if (!payment.trim()) {
             alert("To'lov summasini kiriting");
             return;
         }
 
-        // Kerakli o'quvchini topamiz
+
+        // -----------------------------------------
+        // 2. Studentni topish
+        // -----------------------------------------
+
         const student = students.find(
             student => student.id === studentId
         );
@@ -86,52 +93,136 @@ function InCome() {
         }
 
 
-        // Bugungi sana
+        // -----------------------------------------
+        // 3. Bugungi sana
+        // -----------------------------------------
+
         const today = getToday();
 
-        // Joriy oy
-        const currentMonth = today.split(".")[1];
+
+        // -----------------------------------------
+        // 4. Paymentlarni nusxalash
+        //    Eski tarix o'chirilmaydi
+        // -----------------------------------------
+
+        const payments = Array.isArray(student.payment)
+            ? [...student.payment]
+            : [];
 
 
-        // O'quvchining eski to'lovlaridan
-        // joriy oyga tegishlisini olib tashlaymiz
-        const oldPayments = (student.payment || []).filter(
-            item => item[0].split(".")[1] !== currentMonth
+        // -----------------------------------------
+        // 5. Bugungi oy va yil
+        // -----------------------------------------
+
+        const [
+            todayDay,
+            todayMonth,
+            todayYear
+        ] = today.split(".").map(Number);
+
+
+        // -----------------------------------------
+        // 6. Shu oy uchun paymentni qidiramiz
+        // -----------------------------------------
+
+        const currentPaymentIndex = payments.findIndex(
+            item => {
+
+                if (!item?.[0]) {
+                    return false;
+                }
+
+                const [
+                    day,
+                    month,
+                    year
+                ] = item[0]
+                    .split(".")
+                    .map(Number);
+
+                return (
+                    month === todayMonth &&
+                    year === todayYear
+                );
+            }
         );
 
 
-        // Yangi to'lovni qo'shamiz
-        const updatedPayments = [
-            ...oldPayments,
-            [
-                today,
-                String(payment),
+        // -----------------------------------------
+        // 7. To'lov summasi
+        // -----------------------------------------
+
+        const amount = payment.trim();
+
+
+        // -----------------------------------------
+        // 8. Shu oy uchun payment mavjud bo'lsa
+        //    uni To'langan qilamiz
+        // -----------------------------------------
+
+        if (currentPaymentIndex !== -1) {
+
+            payments[currentPaymentIndex] = [
+                payments[currentPaymentIndex][0],
+                amount,
                 "To'langan"
-            ]
-        ];
+            ];
+
+        }
 
 
-        // Supabase'da o'quvchining payment ustunini yangilaymiz
+        // -----------------------------------------
+        // 9. Shu oy uchun payment hali yo'q bo'lsa
+        //    yangi payment yaratamiz
+        // -----------------------------------------
+
+        else {
+
+            payments.push([
+                today,
+                amount,
+                "To'langan"
+            ]);
+        }
+
+
+        // -----------------------------------------
+        // 10. Supabase'ga saqlash
+        // -----------------------------------------
+
         const { data, error } = await supabase
             .from("students")
             .update({
-                payment: updatedPayments
+                payment: payments
             })
             .eq("id", studentId)
             .select()
             .single();
 
 
-        // Agar xatolik bo'lsa
-        if (error) {
-            console.error(error);
+        // -----------------------------------------
+        // 11. Xatolik
+        // -----------------------------------------
 
-            alert("To'lovni saqlashda xatolik yuz berdi");
+        if (error) {
+
+            console.error(
+                "Payment save error:",
+                error
+            );
+
+            alert(
+                "To'lovni saqlashda xatolik yuz berdi"
+            );
+
             return;
         }
 
 
-        // Ekrandagi ma'lumotni ham yangilaymiz
+        // -----------------------------------------
+        // 12. React state'ni yangilash
+        // -----------------------------------------
+
         setStudents(prevStudents =>
             prevStudents.map(student =>
                 student.id === studentId
@@ -141,12 +232,15 @@ function InCome() {
         );
 
 
-        // Tahrirlash rejimidan chiqamiz
+        // -----------------------------------------
+        // 13. Edit rejimidan chiqish
+        // -----------------------------------------
+
         setEditingStudentId(null);
 
-        // Inputni tozalaymiz
         setPayment("");
     }
+
 
 
     // --------------------------------------------------
@@ -189,13 +283,6 @@ function InCome() {
                         O‘quvchilaringizning to‘lovlarini
                         boshqaring va kuzating
                     </p>
-                </div>
-
-
-                <div className="income-header-btn">
-                    <button className="premium">
-                        To'lov hisoboti
-                    </button>
                 </div>
 
             </div>

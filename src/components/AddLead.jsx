@@ -9,6 +9,7 @@ function AddLead({ editor, leads, ref }) {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [lesson, setLesson] = useState("");
+    const [payment , setPayment] = useState("");
 
     useEffect(() => {
         async function loadLessons() {
@@ -46,7 +47,7 @@ function AddLead({ editor, leads, ref }) {
         const cleanName = name.trim();
         const cleanPhone = phone.trim();
 
-        if (!cleanName || !cleanPhone || !lesson) {
+        if (!cleanName || !cleanPhone || !lesson || !Number(payment.split(" ").join(""))) {
             alert("Barcha ma'lumotlarni kiriting!");
             return;
         }
@@ -56,7 +57,7 @@ function AddLead({ editor, leads, ref }) {
             phone: cleanPhone,
             date: getToday(),
             payment: [
-                [getToday(), "Biriktirilmagan", "To'langan"]
+                [getToday(), payment, "To'langan"]
             ],
             lesson,
             attendance: [
@@ -96,6 +97,12 @@ function AddLead({ editor, leads, ref }) {
                 placeholder="Telefon raqam"
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
+            />
+
+            <input type="text" 
+            placeholder="Oylik to'lov narxi" 
+            value={payment} 
+            onChange={e=>setPayment(e.target.value )}
             />
 
             <label htmlFor="lessons">

@@ -764,3 +764,19 @@
         min-width: 980px;
     }
 }
+.disabled-students {
+    background: #f5f5f5;
+}
+
+.disabled-students td {
+    color: #9ca3af;
+}
+
+.disabled-students:hover {
+    background: #eeeeee;
+}
+
+.disabled-students .edit-btn,
+.disabled-students .save-btn {
+    opacity: 0.65;
+}

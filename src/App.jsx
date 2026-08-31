@@ -10,6 +10,7 @@ import Attendance from './pages/Attendance';
 import OnlyOneStudent from './components/OnlyOneStudent';
 import Profile from './pages/Profile';
 import InCome from './pages/IncomePage';
+import NotificationPage from './pages/NotificationPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -25,7 +26,8 @@ function App() {
         {path:"/attendance" , element:<Attendance/>},
         {path:"/oos/:studentID" , element:<OnlyOneStudent/>},
         {path:"/profile" , element:<Profile/>},
-        {path:"/payment" , element:<InCome/>}
+        {path:"/payment" , element:<InCome/>},
+        {path:"/notification" , element:<NotificationPage/>}
       ]
     }
   ])
