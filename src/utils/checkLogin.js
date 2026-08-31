@@ -9,9 +9,7 @@ async function checkLogin(teacherID){
         if(data || !error){
             return true;
         }
-    } catch (error) {
-        alert(error)
-    }
+    } catch (error) {}
 }
 
 export default checkLogin

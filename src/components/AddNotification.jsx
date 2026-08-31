@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
     FaBell,
     FaTimes,
@@ -6,11 +6,13 @@ import {
     FaUsers
 } from "react-icons/fa";
 import addNotification from "../utils/addNotification";
+import ErrorModal from "./ErrorModal";
 
 function AddNotification({ onClose }) {
 
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
+    const errorRef = useRef(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +26,7 @@ function AddNotification({ onClose }) {
             title: title.trim(),
             message: message.trim(),
             for_whom: teacher_id
-        });
+        } , errorRef);
         setMessage("");
         setTitle("");
         onClose()
@@ -143,7 +145,7 @@ function AddNotification({ onClose }) {
                 </form>
 
             </div>
-
+            <ErrorModal errorRef={errorRef} title={"Xatolik"} message={"Xatolik yuz berdi. Iltimos birozdan so'ng qayta urinib ko'ring."}/>
         </div>
     );
 }

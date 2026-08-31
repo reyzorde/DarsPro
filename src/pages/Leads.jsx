@@ -1,19 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import "./Leads.css";
 import AddLead from "../components/AddLead";
 import Table from "../components/Table";
 import { useNavigate, useParams } from "react-router-dom";
-import Notification from "../components/Notification";
 import getStudents from "../utils/getStudents";
 import getToday from "../utils/getToday";
 import { supabase } from "../supabaseClient";
+import ErrorModal from "../components/ErrorModal";
 
 
 function Leads() {
     const dialog = useRef(null);
     const navigate = useNavigate()
-    const [showNotification, setShowNotification] = useState(false);
     const [lessons, setLessons] = useState([])
 
     const [students, setStudents] = useState([]);
@@ -23,6 +21,7 @@ function Leads() {
     const [editing, setEditing] = useState(null);
     const { lesson } = useParams()
     const [search, setSearch] = useState("");
+    const errorRef = useRef(false);
 
     useEffect(() => {
         async function load() {
@@ -58,10 +57,6 @@ function Leads() {
     }
 
     function handleEdit(id) {
-        setShowNotification(true)
-        setTimeout(() => {
-            setShowNotification(false)
-        }, 3000);
 
         const student = students.find(
             student => student.id === id
@@ -97,15 +92,13 @@ function Leads() {
             return;
         }
 
-
-        // Ma'lumotlar to'liq kiritilganini tekshirish
         if (
             !editing?.name?.trim() ||
             !editing?.phone?.trim() ||
             !editing?.lesson?.trim() ||
             !Array.isArray(editing?.payment)
         ) {
-            alert("Ma'lumotlarni to'liq kiriting!");
+            errorRef.current.showModal()
             return;
         }
 
@@ -113,7 +106,7 @@ function Leads() {
         try {
             let teacherID = JSON.parse(localStorage.getItem("teacherID"))
             if (!teacherID) {
-                alert("Iltimoz avval hisobingizga kiring");
+                errorRef.current.showModal()
                 navigate("/login")
             }
 
@@ -132,11 +125,6 @@ function Leads() {
             if (error) {
                 throw error;
             }
-
-
-            // Database'dan qaytgan yangilangan student
-            // bilan React state'ni ham yangilaymiz
-
             setStudents(prevStudents =>
                 prevStudents.map(student =>
                     student.id === editing.id
@@ -149,16 +137,7 @@ function Leads() {
             setEditing(null);
 
         } catch (error) {
-
-            console.error(
-                "O'quvchini yangilashda xatolik:",
-                error
-            );
-
-            alert(
-                error.message ||
-                "O'quvchini yangilashda xatolik yuz berdi"
-            );
+            errorRef.current.showModal()
         }
     }
 
@@ -204,7 +183,6 @@ function Leads() {
 
     return (
         <div className="leads">
-            {showNotification && <Notification title={"O'quvchi tahrirlanmoqda"} message={`${editing?.name || " "}ni tahrirlamoqchimisiz . O'ylaymizki bu to'lov haqidagi tahrirlash bo'ladi . `} />}
             <header className="leads-header">
                 <div className="header-left">
                     <h2>O'quvchilar</h2>
@@ -295,11 +273,12 @@ function Leads() {
                     handleChange={handleChange}
                     handleEdit={handleEdit}
                     editing={editing}
+                    setEditing={setEditing}
                     handleSave={handleSave}
                     setStudents={setStudents}
                 />
             </div>
-
+            <ErrorModal errorRef={errorRef} title={"Xatolik"} message={"Xatolik yuz berdi . Iltimos birozdan so'ng qayta urining."} />
         </div>
     );
 }

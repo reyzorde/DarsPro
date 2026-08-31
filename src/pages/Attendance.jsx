@@ -4,7 +4,6 @@ import "./Attendance.css"
 import { FaPen, FaSearch } from "react-icons/fa";
 import getToday from "../utils/getToday";
 import getStudents from "../utils/getStudents";
-import { supabase } from "../supabaseClient";
 
 
 function Attendance() {

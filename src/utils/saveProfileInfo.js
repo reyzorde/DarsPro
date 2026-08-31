@@ -1,6 +1,6 @@
 import { supabase } from "../supabaseClient";
 
-async function saveProfileInfo(update) {
+async function saveProfileInfo(update , modal) {
     try {
         let teacher_id = JSON.parse(localStorage.getItem("teacherID"));
         let { data, error } = await supabase.from("teachers").update({
@@ -13,7 +13,7 @@ async function saveProfileInfo(update) {
         }
         return data;
     } catch (error) {
-        console.log(error)
+        modal.current.showModal()
     }
 }
 

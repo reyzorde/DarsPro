@@ -4,6 +4,7 @@ import "./OOS.css";
 import getStudents from "../utils/getStudents";
 import { FaUser } from "react-icons/fa";
 import disActivator from "../utils/disActivateStudent";
+import ErrorModal from "./ErrorModal";
 
 function OnlyOneStudent() {
     const { studentID } = useParams();
@@ -11,6 +12,7 @@ function OnlyOneStudent() {
 
     const [student, setStudent] = useState(null);
     const [loading, setLoading] = useState(true);
+    const errorRef = useRef(false);
 
     useEffect(() => {
         async function loadStudent() {
@@ -23,7 +25,7 @@ function OnlyOneStudent() {
 
                 setStudent(foundStudent || null);
             } catch (error) {
-                alert(error)
+                errorRef.current.showModal()
                 setStudent(null);
             } finally {
                 setLoading(false);
@@ -121,7 +123,8 @@ function OnlyOneStudent() {
                 </table>
             </div>
 
-            {student?.is_active ? <button className="oos-btn deactivate-btn" onClick={()=>disActivator(studentID , "faolsiz")}>O'quvchi faolsizlantirish</button> : <button className="oos-btn activate-btn" onClick={()=>disActivator(studentID , "faol")}>O'quvchini faollashtirish</button>}
+            {student?.is_active ? <button className="oos-btn deactivate-btn" onClick={() => disActivator(studentID, "faolsiz" , errorRef)}>O'quvchi faolsizlantirish</button> : <button className="oos-btn activate-btn" onClick={() => disActivator(studentID, "faol" , errorRef)}>O'quvchini faollashtirish</button>}
+            <ErrorModal errorRef={errorRef} title={"Xatolik"} message={"Xatolik yuz berdi . Iltimos birozdan so'ng qayta urinib ko'ring"}/>
         </div>
     );
 }

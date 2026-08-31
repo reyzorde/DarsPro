@@ -1,6 +1,6 @@
 import { supabase } from "../supabaseClient";
 
-async function handleSave(student) {
+async function handleSave(student , modal) {
     try {
         const { data, error } = await supabase
             .from("students")
@@ -16,8 +16,7 @@ async function handleSave(student) {
         return data;
 
     } catch (error) {
-        console.error("Save student error:", error);
-        alert(error.message);
+        modal.current.showModal();
         return null;
     }
 }

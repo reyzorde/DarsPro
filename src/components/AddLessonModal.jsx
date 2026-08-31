@@ -2,10 +2,7 @@ import { forwardRef, useState } from "react";
 import { supabase } from "../supabaseClient";
 import "./AddLessonModal.css";
 
-const AddLessonModal = forwardRef(function AddLessonModal(
-    { teacherId, onLessonAdded },
-    ref
-) {
+const AddLessonModal = forwardRef(function AddLessonModal({ teacherId, onLessonAdded , errorRef} , ref) {
     const [lessonName, setLessonName] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -16,12 +13,12 @@ const AddLessonModal = forwardRef(function AddLessonModal(
         const name = lessonName.trim();
 
         if (!name) {
-            alert("Guruh nomini kiriting");
+            errorRef.current.showModal()
             return;
         }
 
         if (!teacherId) {
-            alert("Avval login qiling");
+            errorRef.current.showModal()
             return;
         }
 
@@ -29,8 +26,6 @@ const AddLessonModal = forwardRef(function AddLessonModal(
         setLoading(true);
 
         try {
-
-            // Shu teacherda xuddi shu nomli guruh borligini tekshiramiz
             const { data: existingLesson, error: checkError } =
                 await supabase
                     .from("lessons")
@@ -46,55 +41,30 @@ const AddLessonModal = forwardRef(function AddLessonModal(
 
 
             if (existingLesson) {
-                alert("Bu guruh allaqachon mavjud");
+                errorRef.current.showModal()
                 return;
             }
 
-
-            // Yangi guruh yaratamiz
-            // id ni yozmaymiz — Supabase o'zi beradi
             const { data, error } = await supabase
                 .from("lessons")
                 .insert({
                     lesson: name,
                     teacher_id: teacherId,
-
-                    // Hozircha boshqa teacherlarga ko'rsatmaslik
                     disable_for: []
                 })
                 .select()
                 .single();
 
-
             if (error) {
                 throw error;
             }
-
-
-            // Lessons.jsx ga yangi guruhni beramiz
             onLessonAdded(data);
-
-
-            // Inputni tozalaymiz
             setLessonName("");
-
-
-            // Modalni yopamiz
             ref.current?.close();
-
         } catch (error) {
-
-            console.error(
-                "Guruh qo'shishda xatolik:",
-                error
-            );
-
-            alert("Guruh qo'shishda xatolik yuz berdi");
-
+            errorRef.current.showModal()
         } finally {
-
             setLoading(false);
-
         }
     }
 

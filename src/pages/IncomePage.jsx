@@ -1,43 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowAltCircleLeft, FaPen, FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
 import "./Income.css";
-
 import getToday from "../utils/getToday";
 import getStudents from "../utils/getStudents";
 import getMonthlyPayments from "../utils/getPayments";
 import { supabase } from "../supabaseClient";
+import ErrorModal from "../components/ErrorModal";
 
 
 function InCome() {
     const navigate = useNavigate();
-
-    // O'quvchilar ro'yxati
     const [students, setStudents] = useState([]);
-
-    // Hozir qaysi o'quvchi tahrir qilinayotganini saqlaydi
     const [editingStudentId, setEditingStudentId] = useState(null);
-
-    // Tahrirlash vaqtida kiritilayotgan to'lov summasi
     const [payment, setPayment] = useState("");
-
-    // Ma'lumot yuklanayotganini bildiradi
     const [loading, setLoading] = useState(true);
+    const errorRef = useRef(false);
 
 
-    // --------------------------------------------------
-    // O'QUVCHILARNI SUPABASE'DAN OLISH
-    // --------------------------------------------------
 
     useEffect(() => {
         async function loadStudents() {
             try {
                 const data = await getStudents();
-
                 setStudents(data || []);
             } catch (error) {
-                console.error("O'quvchilarni olishda xatolik:", error);
+                errorRef.current.showModal()
             } finally {
                 setLoading(false);
             }
@@ -205,23 +193,9 @@ function InCome() {
         // -----------------------------------------
 
         if (error) {
-
-            console.error(
-                "Payment save error:",
-                error
-            );
-
-            alert(
-                "To'lovni saqlashda xatolik yuz berdi"
-            );
-
+            errorRef.current.showModal()
             return;
         }
-
-
-        // -----------------------------------------
-        // 12. React state'ni yangilash
-        // -----------------------------------------
 
         setStudents(prevStudents =>
             prevStudents.map(student =>
@@ -230,23 +204,9 @@ function InCome() {
                     : student
             )
         );
-
-
-        // -----------------------------------------
-        // 13. Edit rejimidan chiqish
-        // -----------------------------------------
-
         setEditingStudentId(null);
-
         setPayment("");
     }
-
-
-
-    // --------------------------------------------------
-    // LOADING
-    // --------------------------------------------------
-
     if (loading) {
         return (
             <div className="income-wrapper">
@@ -254,11 +214,6 @@ function InCome() {
             </div>
         );
     }
-
-
-    // --------------------------------------------------
-    // PAGE
-    // --------------------------------------------------
 
     return (
         <div className="income-wrapper">
@@ -444,7 +399,9 @@ function InCome() {
                 </table>
 
             </div>
-
+            <ErrorModal errorRef={errorRef} title={"Xatolik"}
+                message={"Xatolik yuz berdi . Iltimos birozdan so'ng qayta urining."}
+            />
         </div>
     );
 }

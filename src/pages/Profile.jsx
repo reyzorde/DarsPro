@@ -1,13 +1,15 @@
-import { FaArrowAltCircleLeft, FaUser } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaQuestionCircle, FaTelegramPlane, FaUser } from "react-icons/fa";
 import "./Profile.css"
 import { useNavigate } from "react-router-dom";
 import Rules from "../components/Rules";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import getInfo from "../utils/getprofileinfo";
 import saveProfileInfo from "../utils/saveProfileInfo";
+import ErrorModal from "../components/ErrorModal";
 
 function Profile() {
     let navigate = useNavigate();
+    let errorRef = useRef(false);
     const [isEdit, SetIsEdit] = useState(false);
     const [data, setData] = useState(null)
     const [name, setName] = useState("");
@@ -28,24 +30,14 @@ function Profile() {
     }
 
     function handleDelete() {
-        let password = prompt("Parolni kiriting");
-        if (password === "s1r0j1dd1n") {
-            let allow = prompt(`Tasdiqlash uchun "OK" ni yozing`);
-            if (allow === "OK") {
-                localStorage.clear();
-                navigate("/login");
-                alert("Hisob muvvafaqiyatli o'chirildi");
-            } else {
-                alert("Hisob o'chirilmadi");
-            }
-        } else {
-            alert("Parol xato")
-        }
+        localStorage.clear();
+        navigate("/login");
+        alert("Hisob muvvafaqiyatli o'chirildi");
     }
 
     async function handleSave() {
         if (!name || !center || !imageURL) {
-            alert("To'ldirilmagan maydon mavjud");
+            errorRef.current.showModal()
             return;
         }
         try {
@@ -54,14 +46,13 @@ function Profile() {
                 center: center,
                 image_url: imageURL
             }
-            let newData = await saveProfileInfo(update);
+            let newData = await saveProfileInfo(update , errorRef);
             setData(newData);
             SetIsEdit(false);
             setCenter("");
             setName("")
-            alert("Muvvafaqiyatli qo'shildi!")
         } catch (error) {
-            console.log(error)
+            errorRef.current.showModal()
         }
     }
 
@@ -69,7 +60,7 @@ function Profile() {
         <button onClick={() => navigate(-1)}><FaArrowAltCircleLeft /></button>
         <div className="profile-section1">
             <div className="profile-image">
-                {data?.img_url ? <img src={data?.img_url} alt="User image" /> : <FaUser/>}
+                {data?.img_url ? <img src={data?.img_url} alt="User image" /> : <FaUser />}
             </div>
             {!isEdit ? <div className="profile-about">
                 <h2>{data ? data?.name : "Ism kiritilmagan"}</h2>
@@ -80,14 +71,50 @@ function Profile() {
                 <input type="text" placeholder="Markaz nomini Tahrirlash" onChange={(e) => setCenter(e.target.value)} />
                 <input type="text" placeholder="Yangi rasm manzilini shu yerga qoying" onChange={(e) => setImageURL(e.target.value)} />
                 <p>Keyingi to'lov: Bu toifada to'lov mavjud emas.</p>
-                <button className="profile-save" onClick={handleSave}>Saqlash</button>
+                <div className="profile-edit-btn">
+                    <button className="profile-save" onClick={handleSave}>Saqlash</button>
+                    <button onClick={() => SetIsEdit(false)} className="profile-undo">Bekor qilish</button>
+                </div>
             </div>}
         </div>
         <Rules />
+              <div className="help">
+
+        <div className="help-icon">
+          <FaQuestionCircle />
+        </div>
+
+        <div className="help-content">
+          <h3>Yordam kerakmi?</h3>
+
+          <p>
+            Ilovaga kirishda muammo bo‘lsa yoki
+            qanday foydalanishni bilmasangiz,
+            biz bilan bog‘laning.
+          </p>
+
+          <a
+            href="https://t.me/darspro_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="help-btn"
+          >
+            <FaTelegramPlane />
+
+            <span>
+              Telegram orqali yordam so‘rash
+            </span>
+          </a>
+        </div>
+
+      </div>
         <div className="profile-section3">
             <button onClick={handleOut}>Hisobdan chiqish</button>
             <button onClick={handleDelete}>Hisobni o'chirish</button>
         </div>
+        <ErrorModal errorRef={errorRef} title={"To'ldirilmagan maydon"}
+            message={"To'ldirilmagan maydon mavjud . Iltimos maydonlarni to'ldirilganligiga ishon hosil qilib birozdan so'ng qayta urining"}
+        />
     </div>
 }
 

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./AddLead.css";
 import getToday from "../utils/getToday";
 import handleSave from "../utils/saveStudent";
 import { supabase } from "../supabaseClient";
+import ErrorModal from "./ErrorModal";
 
 function AddLead({ editor, leads, ref }) {
     const [lessons, setLessons] = useState([])
@@ -10,6 +11,7 @@ function AddLead({ editor, leads, ref }) {
     const [phone, setPhone] = useState("");
     const [lesson, setLesson] = useState("");
     const [payment , setPayment] = useState("");
+    let errorRef = useRef(false);
 
     useEffect(() => {
         async function loadLessons() {
@@ -48,7 +50,7 @@ function AddLead({ editor, leads, ref }) {
         const cleanPhone = phone.trim();
 
         if (!cleanName || !cleanPhone || !lesson || !Number(payment.split(" ").join(""))) {
-            alert("Barcha ma'lumotlarni kiriting!");
+            errorRef.current.showModal()
             return;
         }
 
@@ -68,7 +70,7 @@ function AddLead({ editor, leads, ref }) {
             teacher_id: JSON.parse(localStorage.getItem("teacherID"))
         };
 
-        const savedStudent = await handleSave(newStudent);
+        const savedStudent = await handleSave(newStudent , errorRef);
 
         if (!savedStudent) {
             return;
@@ -140,7 +142,10 @@ function AddLead({ editor, leads, ref }) {
             >
                 Bekor qilish
             </button>
-
+                <ErrorModal errorRef={errorRef} 
+                title={"To'ldirilmagan"} 
+                message={"To'ldirilmagan maydon mavjud . Iltimos maydonlarni to'ldirilganligiga ishon hosil qilib birozdan so'ng qayta urining"}
+                />
         </dialog>
     );
 }

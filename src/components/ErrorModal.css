@@ -1,0 +1,150 @@
+
+.error-modal {
+    border-radius: 16px;
+
+    background: #ffffff;
+    color: #1f2937;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.18);
+
+}
+
+/* Orqa fon */
+.error-modal::backdrop {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+
+/* Modal ichidagi asosiy qism */
+.error-modal .error-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 28px 28px 10px;
+}
+
+
+/* Xato ikonkasi */
+.error-modal .error-icon svg {
+    width: 52px;
+    height: 52px;
+
+    padding: 13px;
+
+    box-sizing: border-box;
+
+    color: #dc2626;
+    background: #fee2e2;
+
+    border-radius: 50%;
+
+    margin-bottom: 14px;
+}
+
+
+/* Title */
+.error-modal .error-icon h1 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #111827;
+
+    text-align: center;
+}
+
+
+/* Message */
+.error-modal > p {
+    margin: 8px 28px 22px;
+
+    font-size: 15px;
+    line-height: 1.6;
+
+    color: #6b7280;
+
+    text-align: center;
+}
+
+
+/* Yopish button */
+.error-modal > button {
+    display: block;
+
+    width: calc(100% - 56px);
+
+    margin: 0 28px 28px;
+
+    padding: 11px 16px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #dc2626;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.error-modal > button:hover {
+    background: #b91c1c;
+
+    box-shadow:
+        0 5px 12px rgba(220, 38, 38, 0.25);
+
+    transform: translateY(-1px);
+}
+
+.error-modal > button:active {
+    transform: translateY(0);
+}
+
+.error-modal > button:focus {
+    outline: none;
+}
+
+.error-modal > button:focus-visible {
+    outline: 3px solid rgba(220, 38, 38, 0.25);
+    outline-offset: 2px;
+}
+
+/* Telefon */
+@media (max-width: 480px) {
+
+    .error-modal {
+        width: calc(100% - 32px);
+        border-radius: 14px;
+    }
+
+    .error-modal .error-icon {
+        padding: 24px 20px 8px;
+    }
+
+    .error-modal .error-icon h1 {
+        font-size: 20px;
+    }
+
+    .error-modal > p {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .error-modal > button {
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}

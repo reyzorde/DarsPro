@@ -1,6 +1,6 @@
 import { supabase } from "../supabaseClient";
 
-async function addNotification(obj){
+async function addNotification(obj , modal){
 try {
     let {data , error} = await supabase.from("notification").insert(obj).select();
     if(!data || error){
@@ -8,7 +8,7 @@ try {
     }
     return data
 } catch (error) {
-    alert("Xatolik: " , error)
+ modal.current.showModal();   
 }
 }
 

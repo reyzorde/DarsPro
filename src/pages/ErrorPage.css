@@ -1,0 +1,194 @@
+.error-page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: #f8fafc;
+}
+
+
+/* CARD */
+
+.error-page-card {
+    width: min(440px, 100%);
+
+    padding: 45px 35px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.08);
+
+    animation: errorCardShow 0.3s ease;
+}
+
+
+/* ICON */
+
+.error-page-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fee2e2;
+    color: #dc2626;
+
+    font-size: 32px;
+}
+
+
+/* 404 */
+
+.error-page-card h1 {
+    margin: 0;
+
+    font-size: 72px;
+    line-height: 1;
+
+    font-weight: 800;
+
+    color: #dc2626;
+
+    letter-spacing: -3px;
+}
+
+
+/* TITLE */
+
+.error-page-card h2 {
+    margin: 15px 0 8px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #111827;
+}
+
+
+/* DESCRIPTION */
+
+.error-page-card p {
+    margin: 0 auto 28px;
+
+    max-width: 340px;
+
+    font-size: 15px;
+    line-height: 1.6;
+
+    color: #6b7280;
+}
+
+
+/* BUTTON */
+
+.error-page-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.error-page-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+
+.error-page-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ANIMATION */
+
+@keyframes errorCardShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    .error-page {
+        padding: 15px;
+    }
+
+    .error-page-card {
+        padding: 35px 22px;
+        border-radius: 16px;
+    }
+
+    .error-page-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 27px;
+    }
+
+    .error-page-card h1 {
+        font-size: 60px;
+    }
+
+    .error-page-card h2 {
+        font-size: 21px;
+    }
+
+    .error-page-card p {
+        font-size: 14px;
+    }
+
+    .error-page-btn {
+        width: 100%;
+    }
+}

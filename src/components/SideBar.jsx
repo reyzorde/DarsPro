@@ -30,9 +30,9 @@ function SideBar() {
           <FaBook />
           <span>Darslar</span>
         </NavLink>
-        
+
         <NavLink to="/attendance">
-          <FaUserCheck/>
+          <FaUserCheck />
           <span>Davomat</span>
         </NavLink>
 
@@ -41,6 +41,8 @@ function SideBar() {
           <span>Sozlamalar</span>
         </NavLink>
       </nav>
+
+
     </aside>
   );
 }

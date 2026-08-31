@@ -6,6 +6,7 @@ import AddLessonModal from "../components/AddLessonModal";
 import "./Lessons.css";
 
 import { supabase } from "../supabaseClient";
+import ErrorModal from "../components/ErrorModal";
 
 
 function Lessons() {
@@ -15,11 +16,7 @@ function Lessons() {
     const [teacherId, setTeacherId] = useState(null);
 
     const modal = useRef(null);
-
-
-    // --------------------------------------------------
-    // TEACHER ID
-    // --------------------------------------------------
+    const errorRef = useRef(false);
 
     function getTeacherId() {
 
@@ -37,22 +34,7 @@ function Lessons() {
         }
     }
 
-
-    // --------------------------------------------------
-    // GURUHLARNI DATABASE'DAN OLISH
-    // --------------------------------------------------
-
     async function loadLessons(currentTeacherId) {
-
-        /*
-            2 xil guruh mavjud:
-
-            1. Global/default guruhlar
-               teacher_id = null
-
-            2. Teacher yaratgan guruhlar
-               teacher_id = currentTeacherId
-        */
 
         const { data, error } = await supabase
             .from("lessons")
@@ -69,11 +51,6 @@ function Lessons() {
             throw error;
         }
 
-
-        /*
-            disable_for ichida teacher ID bo'lsa,
-            shu teacherga guruh ko'rsatilmaydi.
-        */
 
         const visibleLessons = (data || []).filter(
             lesson => {
@@ -93,10 +70,6 @@ function Lessons() {
     }
 
 
-    // --------------------------------------------------
-    // PAGE YUKLANGANDA
-    // --------------------------------------------------
-
     useEffect(() => {
 
         async function load() {
@@ -108,53 +81,27 @@ function Lessons() {
 
 
                 if (!currentTeacherId) {
-                    alert("Avval login qiling");
+                    errorRef.current.showModal()
                     return;
                 }
 
-
                 setTeacherId(currentTeacherId);
-
                 await loadLessons(
                     currentTeacherId
                 );
-
             } catch (error) {
-
-                console.error(
-                    "Guruhlarni olishda xatolik:",
-                    error
-                );
-
-                alert(
-                    "Guruhlarni yuklashda xatolik yuz berdi"
-                );
-
+                errorRef.current.showModal();
             } finally {
-
                 setLoading(false);
-
             }
         }
-
-
         load();
 
     }, []);
 
-
-    // --------------------------------------------------
-    // MODAL
-    // --------------------------------------------------
-
     function handleShowModal() {
         modal.current?.showModal();
     }
-
-
-    // --------------------------------------------------
-    // YANGI GURUH QO'SHILDI
-    // --------------------------------------------------
 
     function handleLessonAdded(newLesson) {
 
@@ -164,10 +111,6 @@ function Lessons() {
         ]);
     }
 
-
-    // --------------------------------------------------
-    // LOADING
-    // --------------------------------------------------
 
     if (loading) {
 
@@ -180,11 +123,6 @@ function Lessons() {
         );
     }
 
-
-    // --------------------------------------------------
-    // PAGE
-    // --------------------------------------------------
-
     return (
         <div className="lessons-wrapper">
 
@@ -195,55 +133,24 @@ function Lessons() {
                 </h2>
 
 
-                <button
-                    onClick={handleShowModal}
-                    className="add-lesson-btn"
-                >
-                    + Guruh qo'shish
-                </button>
-
+                <button onClick={handleShowModal} className="add-lesson-btn">+ Guruh qo'shish</button>
             </div>
-
-
             <AddLessonModal
                 ref={modal}
                 teacherId={teacherId}
                 onLessonAdded={handleLessonAdded}
+                errorRef={errorRef}
             />
-
-
             <div className="lessons-list">
-
-                <h2>
-                    Guruhlar ro'yxati
-                </h2>
-
-
-                {lessons.length === 0 ? (
-
-                    <p>
-                        Hozircha guruhlar mavjud emas
-                    </p>
-
-                ) : (
-
-                    lessons.map(lesson => (
-
-                        <LessonCard
-                            key={lesson.id}
-                            lesson={lesson}
-                        />
-
-                    ))
-
-                )}
-
+                <h2>Guruhlar ro'yxati</h2>
+                {lessons.length === 0 ? (<p>Hozircha guruhlar mavjud emas</p>) : (lessons.map(lesson => (<LessonCard key={lesson.id} lesson={lesson} />)))}
             </div>
-
+            <ErrorModal errorRef={errorRef} title={"Xatolik"}
+                message={"Xatolik  yuz berdi . Iltimos birozdan so'ng qayta urinib ko'ring."}
+            />
         </div>
     );
 }
 
 
 export default Lessons;
- 

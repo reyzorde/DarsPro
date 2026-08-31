@@ -1,7 +1,6 @@
-import { data } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
-async function disActivator(student_id , sitaut) {
+async function disActivator(student_id , sitaut , modal) {
     try {
 
         // Teacher ID
@@ -34,18 +33,6 @@ async function disActivator(student_id , sitaut) {
             alert("O'quvchi topilmadi");
             return;
         }
-
-
-        // Tasdiqlash
-        const p = prompt(
-            "Tasdiqlash uchun OK deb yozing"
-        );
-
-
-        if (p !== "OK") {
-            alert("O'quvchi faolsizlantirilmadi.");
-            return;
-        }
         let is_active ;
         if(sitaut === "faol"){
             is_active = true;
@@ -73,11 +60,7 @@ async function disActivator(student_id , sitaut) {
         return updatedStudent;
 
     } catch (error) {
-
-        alert(
-            error?.message ||
-            "O'quvchini faolsizlantirishda xatolik yuz berdi."
-        );
+        modal.current.showModal();
     }
 }
 

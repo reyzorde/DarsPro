@@ -12,7 +12,7 @@ async function getStudents() {
         }
         return data || [];
     } catch (error) {
-        alert(error)
+        return []
     }
 }
 

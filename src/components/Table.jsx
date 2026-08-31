@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import getToday from "../utils/getToday";
 import { supabase } from "../supabaseClient";
 
-function Table({ filteredStudents, editing, handleChange, handleEdit, handleSave, setStudents }) {
+function Table({ filteredStudents, editing , setEditing, handleChange, handleEdit, handleSave, setStudents }) {
     const navigate = useNavigate();
     const [editingAttendance, setEditingAttendance] = useState(false);
     const [attendanceChanges, setAttendanceChanges] = useState({});
@@ -310,11 +310,20 @@ function Table({ filteredStudents, editing, handleChange, handleEdit, handleSave
                         <td>{lead.is_active ? "Faol" : "Nofaol"}</td>
                         <td>
                             {editing?.id === lead.id ? (
-                                <button className="save-btn" onClick={handleSave}>
-                                    Saqlash
-                                </button>
+                                <div className="edit-btn">
+                                    <button className="save-btn" onClick={handleSave}>
+                                        Saqlash
+                                    </button>
+                                    <button className="save-btn" onClick={() => {
+                                        setAttendanceChanges({});
+                                        setEditingAttendance(false);
+                                        setEditing(null)
+                                    }}>
+                                        Bekor qilish
+                                        </button>
+                                </div>
                             ) : (
-                                <button className="edit-btn" onClick={() => handleEdit(lead.id)}  disabled={!lead.is_active}>
+                                <button className="edit-btn" onClick={() => handleEdit(lead.id)} disabled={!lead.is_active}>
                                     <FaPen />
                                 </button>
                             )}
